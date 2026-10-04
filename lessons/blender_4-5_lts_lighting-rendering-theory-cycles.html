@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ライティングとレンダリングの基礎(CyclesとEEVEE) - Blender基礎 4.5 LTS 日本語ガイド</title>
+<link rel="stylesheet" href="../style.css"></head><body><main>
+<p><a href="../index.html">← 目次へ</a></p>
+<h1>ライティングとレンダリングの基礎(CyclesとEEVEE)</h1>
+<p class="note">Blender Studio「Blender Fundamentals 4.5 LTS」の無料レッスンを、日本語で要点をまとめた非公式の学習ガイドです(逐語訳ではありません)。原文: <a href="https://studio.blender.org/training/blender-fundamentals-45-lts/blender_4-5_lts_lighting-rendering-theory-cycles/">Lighting &amp; Rendering Theory Cycles and EEVEE</a></p>
+<p>Cycles と EEVEE の仕組みと違いに関する、最も重要な理論です。</p>
+<h2>Cycles とは</h2>
+<p>幅広い用途で画像をレンダリング(生成)する、<b>物理ベースのパストレーサー</b>です。CPU(プロセッサー)と GPU(グラフィックスカード)の処理を組み合わせて、シーンを計算します。高品質でリアル、説得力のあるレンダリングに優れ、パノラマレンダリング(HDRI 画像の作成など)にも使えます。</p>
+<h2>EEVEE とは</h2>
+<p>Cycles のリアルタイムな代替として、より柔軟に使えるよう作られました。短いレンダリング時間で、素早い出力に重点を置きます。Cycles にできるだけ近い結果を目指していますが、根本的には、<b>ラスタライズ</b>を使うゲームエンジンのレンダリングに近いものです。マテリアルプレビューモードやルックデブのプレビューも、EEVEE でレンダリングされます。</p>
+<h2>Cycles と EEVEE の比較</h2>
+<p>ブルータリズム風のシーンで、レンダリングの違いと、特定のレンダー機能の影響、さらに EEVEE と Cycles のデータを組み合わせる方法を確認します。Cycles のレンダーはすべてデノイズ付きです。</p>
+<ul>
+<li>Cycles(ボリュームあり):5分10秒</li>
+<li>Cycles(ボリュームなし):2分35秒</li>
+<li>EEVEE(ボリュームあり、ライトプローブ使用):1フレームあたり24秒</li>
+<li>Cycles に EEVEE の Volume パスを合成:1フレームあたり2分10秒</li>
+</ul>
+<p><b>ライトプローブ</b>は、EEVEE で特定のエリア内の反射とバウンスライティングを自動で取得するオブジェクトです。<b>レンダーパス</b>は、レンダーエンジンが生成する画像の特定の部分(ディフューズの色、反射、透過、さらにノーマル、Z(深度)、位置などの技術的なパス)で、コンポジットの章で詳しく扱います。別のレンダーエンジンの2つの画像を1つにまとめる例では、制作を速くできる一方、レンダリングの精度は下がります。実際のボリューム光の散乱が、シーンの要素に影響する最初の画像とは、特に木の部分で結果が異なります。</p>
+<h3>EEVEE の設定ごとの特徴</h3>
+<ul>
+<li><b>Fast GI(スクリーンスペース)</b>:1フレーム13〜15秒。階段が画面外に出ると、バウンスライティングがなくなる。テクスチャは Cycles より鮮明に見える(正確なバウンスライティングで柔らかくならないため)。World の色(青系)の寄与が高く、ゲームで影に色を付けて、バウンスライティングを疑似的に表現する一般的な方法です。ガラスのオブジェクトの処理が苦手。</li>
+<li><b>ライトプローブ</b>:バウンスと反射が自動で計算される。ライティングは安定して Cycles に近く、レンダリング時間は約15秒/フレームで、ほぼ同じ。</li>
+<li>左右のドアの反射は、EEVEE と正確な Cycles で違いがある。ガラスのドアの奥の、照明のない部屋は、Cycles では実際に暗いが、EEVEE では World の色(青)で照らされる。</li>
+</ul>
+<h2>EEVEE が得意なこと</h2>
+<ul><li>高速なレンダリング。特にボリュームのレンダリング</li><li>スタイライズされた制作や、プリビズ/レイアウト</li></ul>
+<h2>Cycles の課題</h2>
+<ul><li>EEVEE よりレンダリングにずっと時間がかかることがある</li><li>ノイズのない画像を作るのが難しい(Limitations ページを参照)</li></ul>
+<h2>EEVEE の制限</h2>
+<ul>
+<li>説得力のある結果を作るには、より多くの作業が必要。</li>
+<li>多くのリアルタイムエンジンのように、オブジェクトを「接続」「接地」させるのが難しく、シーンから浮いて見えやすい。</li>
+<li>反射やグローバルイルミネーションなど、多くのレンダリングの「トリック」は<b>スクリーンスペース</b>に基づく。山と湖の前に立っていて、カメラを山から下に向けると、反射が途中で消える(カメラが単純に見えないため)。EEVEE Limitations のページを参照。</li>
+</ul>
+<p>.blend ファイル(brutalist_corp_packed.blend、CC-BY)は原文ページからダウンロードして、自分で試せます。</p>
+<h2>まとめ</h2>
+<p>Cycles と EEVEE の最も基本的な違い、両方のレンダーエンジンの利点と課題を学びました。</p>
+
+<nav class="pager"><a href="blender_4-5_lts_shading_watering_can.html">← じょうろのシェーディング</a><a href="blender_4-5_lts_light-types.html">ライトの種類 →</a></nav>
+</main></body></html>

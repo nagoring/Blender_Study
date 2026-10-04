@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>じょうろのシェーディング - Blender基礎 4.5 LTS 日本語ガイド</title>
+<link rel="stylesheet" href="../style.css"></head><body><main>
+<p><a href="../index.html">← 目次へ</a></p>
+<h1>じょうろのシェーディング</h1>
+<p class="note">Blender Studio「Blender Fundamentals 4.5 LTS」の無料レッスンを、日本語で要点をまとめた非公式の学習ガイドです(逐語訳ではありません)。原文: <a href="https://studio.blender.org/training/blender-fundamentals-45-lts/blender_4-5_lts_shading_watering_can/">Shading Watering Can</a></p>
+<p>じょうろに、プロシージャルな粗さのテクスチャ、選択範囲に応じた2種類のノーマルのディテール、ジオメトリノードの値をマテリアルへ出力する設定を加えて、シェーディングを始めます。</p>
+<h2>ベースカラー</h2>
+<ol>
+<li>watering_can.blend を開き、Shading ワークスペースへ。「grid」の Image Texture を削除し、<b>Texture Coordinate</b> を追加。</li>
+<li>Generated ソケットから <b>Separate XYZ</b> を追加し、Z をプレビュー(ライトエフェクトのときと同じ、上から下へのグラデーション)。</li>
+<li><b>Color Ramp</b> を追加して、グラデーションを作る(例:下が暗い赤、上が明るい赤)。</li>
+</ol>
+<p>Gradient ノードを使わない理由:分けたベクトルを使うほうが簡単で、手順も少ないからです。Gradient ノードにはさまざまなタイプがあり便利ですが、Mapping や Vector Rotate での調整が必要になります。</p>
+<h2>幕間:トポロジーの修正</h2>
+<p>シェーディング中に、持ち手と注ぎ口の接続部の周りで、わずかな変形に気付くことがあります。追加のループと Subdivision Surface モディファイアの組み合わせで、小さな盛り上がりができるためです。プロシージャルに作業しているので、トポロジーを正しく削除・接続すれば、UVは維持されます。この時点で直すか、そのまま進めるかは自由です。</p>
+<ul>
+<li>ソリッド表示の編集モードで、動画のように3つの面を選び、<b>F</b> で N-gon を作る(面を削除するとUVも消えるため、先に N-gon を作る)。</li>
+<li>持ち手や注ぎ口のエッジリングの角と頂点を選び、<b>J</b> で接続。すでにつながっているトポロジー(今回の N-gon など)では、J を使い、F で面を作るか、(穴があれば)N-gon を作る。</li>
+<li><b>Ctrl + X</b> で頂点を Dissolve する。すべてがつながっていれば、不要になったエッジループを削除。</li>
+</ul>
+<p>Material Preview か Rendered で、わずかな盛り上がりが消えていることを確認します。底も同様に直し、ほかにも同様の問題がないか確認しましょう。</p>
+<h2>ラフネス(粗さ)</h2>
+<p>表面の不完全さを作るため、プロシージャルなノイズの設定を作ります。</p>
+<div class="note"><b>プロシージャルとは?</b> 数学的に定義され、パラメーターで調整するノードで作るテクスチャです。平面の2Dテクスチャだけでなく、雲を作るボリュームレンダリングなどの3D要素にも影響できます。利点は、非常に柔軟で、複雑な結果を作れ、解像度が基本的に「無限」(通常のテクスチャはピクセル解像度に縛られる)なことです。</div>
+<ol>
+<li>画像エディターとファイルブラウザーを「結合」して、作業スペースを広げる。</li>
+<li><b>Noise Texture</b> を追加し、Texture Coordinate の Object ベクトルを Vector につなぎ、Scale を上げる。パラメーターを変えて、3Dビューポートで確認。</li>
+<li>Texture Coordinate と Noise Texture の間に、<b>Mix Color</b>(<b>Linear Light</b>)ノードを置く。Noise Texture を複製して、動画のようにつなぐと、別の Noise Texture の Color でベクトルを歪められる。Mix Color の Factor で、歪みの量を調整。<b>どんなテクスチャでもベクトルを歪められます</b>。</li>
+<li>最後の Noise Texture を Principled BSDF の Roughness につなぎ、プレビュー。</li>
+<li>Noise Texture の後に <b>Map Range</b> を追加し、値の範囲(ここでは粗さ/光沢)を調整。Noise Texture の Roughness を 0.8 以上にして、鋭いディテールを加える。</li>
+<li>Map Range の From Min と To Min を -0.8 付近に下げると、オブジェクトがより光沢のある見た目になる(値を下げる=粗さが減る)。Principled BSDF の Specular タブで、<b>IOR Level</b> を 1 にすると、さらに反射が強くなる。好みで調整。</li>
+</ol>
+<h2>フレーム</h2>
+<p>見通しを保つため、<b>フレーム</b>で整理します。粗さのテクスチャを作る4つのノードをすべて選び、<b>Node › Join in New Frame</b>。フレームは名前を付けられます(F2 で名前変更、ラベルは「roughness」と「color」)。2つのカラーノードも同様に。フレームを動かすと中のノードも動き、フレーム内のノードを動かすとフレームの大きさが変わります。</p>
+<h2>ノーマル:四角</h2>
+<p>2種類のノーマルのディテールを作り、カラーアトリビュートでモデルの範囲を除外/含めてミックスします。</p>
+<ol>
+<li>UV ソケットからドラッグして <b>Voronoi Texture</b> を追加。Voronoi は、キリンの模様、葉脈、ひび割れた泥、小さく積み重なった泡など、自然に多く見られるパターン(ウォーリーノイズ)です。プレビューして、Scale を 16、Randomness を 0、Feature Output を <b>F2</b> に。</li>
+<li><b>Vector Math</b>(Scale)で、縦に4つの Voronoi のセグメントが並ぶようにする。間に <b>Vector Math</b>(Add)を追加し、UV 全体を、水平の U と垂直の V に値を足して移動できるようにする。上下に4つのセグメントを揃え、シーム付近も整える。</li>
+<li>Mapping ノードを使わないのは、個別のノードで影響を分けて、全体への寄与を分かりやすくするためです(Mapping を使っても構いません)。必要なら、じょうろの上部のUVを回転します。<b>警告</b> UV を大きく調整すると、構築エフェクトに影響します。小さな調整にしてください(解決策として、シェーディング専用の2つ目のUVマップを作る方法もありますが、時間の都合で、構築エフェクトとシェーディングで同じUVマップを使っています)。</li>
+<li><b>Bump</b> ノードで確認:Distance ソケットを Height につなぎ、プレビュー。Distance を 0.02 などに上げ、Filter Width(動画では 6)で、バンプを柔らかくする。Normal を Principled BSDF の Normal につなぐ。</li>
+</ol>
+<p>バンプがモデル全体に適用されてしまうので、<b>カラーアトリビュート</b>で解決します。</p>
+<ol>
+<li>頂点ペイントモードに入ると、「Attribute」という新しいカラーアトリビュートが作られる。Primary を黒にし(X で入れ替え)、Ctrl + X で全体を黒で塗りつぶす。</li>
+<li>左上の Paint Mask を有効にし、編集モードでカーソルを合わせて <b>L</b> で、大きなチューブの面と上の蓋を選ぶ。編集モードを出て、白を Primary にし、Ctrl + X で選択範囲を塗りつぶす。</li>
+<li>Data タブで、カラーアトリビュートの名前を「square_normal」に変更。Attribute ノードを追加し、その名前を欄にコピー&ペースト。<b>Tip</b> 名前などの文字列は、カラーアトリビュート上にカーソルを合わせ、欄の上で Ctrl + C(選択せず)、Ctrl + V でコピーできます。</li>
+<li><b>Mix Color</b> を追加し、Distance を B に、Attribute の Fac を Mix の Factor につなぐ。Mix の Result を Bump の Height につなぐ。</li>
+</ol>
+<p>これで、カラーアトリビュートが、バンプを適用する場所に影響します。</p>
+<h2>ノーマル:線</h2>
+<p>同じ手法で、持ち手、注ぎ口、底の縁に、別のバンプのディテールを追加します。</p>
+<ol>
+<li><b>Wave Texture</b> を追加し、Texture Coordinate の UV をつなぐ。Fac をプレビュー。Band Direction を Y に(UVマップによっては、すでに正しい)。</li>
+<li><b>Map Range</b> を追加し、Result を Bump の Height に。Wave Texture の Scale を 8 にして、Map Range で、テクスチャを小さく詰める。</li>
+<li>新しいカラーアトリビュート「line_normal」(<b>Face Corner</b>)を追加。頂点ペイントモードで、L で注ぎ口、持ち手、底の縁を選び、Ctrl + X で塗りつぶす。</li>
+<li>Attribute ノードを複製して新しい名前を貼り付ける。Mix ノードを複製し、Map Range の Result を B に、Attribute の Fac を Factor に。前のテクスチャを、残りの A ソケットにつなぐ。誤って Wave Texture が割り当てられた場所は、頂点ペイントモードで黒く塗りつぶして直す。</li>
+<li>新しい Mix の Result を Bump の Height につなぎ、結果を確認。ノーマルのノードにフレームを付けるのを忘れずに。</li>
+</ol>
+<h2>構築エフェクトのアニメーション</h2>
+<p>じょうろのベースマテリアルができたら、ジオメトリノードのデータを使って<b>発光</b>に影響させる構築エフェクトを加えます。再生/停止を Space でできるよう、キーフレームを2つ打ちます。</p>
+<ol>
+<li>Geometry Nodes ワークスペースで、フレーム 0 に合わせ、Evolution を 0 にして、パラメーター上で <b>I</b> を押し(またはダイヤのアイコンで)、キーフレームを挿入。</li>
+<li>フレーム 70 に移動し、値を 3 にして、もう1つキーフレームを追加。End を 100 にして、終了のキーフレームを動かし、タイミングを調整。</li>
+<li>現在の設定では、Evolution が 1.6 でじょうろが完全に作り直されます。この値を変えると、構築エフェクトが遅くなり、見せやすくなります。終了のキーフレームの値は 1.6 ですが、シェーディングの設定によるので、柔軟に調整しましょう。</li>
+</ol>
+<h3>構築エフェクトのアトリビュート</h3>
+<p>ジオメトリノードのどのアトリビュートも、出力してマテリアルで使えます。</p>
+<ol>
+<li>ジオメトリノードエディターで <b>Blur Attribute</b> ノードを追加し、Greater Than ノードの結果を Value につなぐ。Iterations を 128 にして、大きくぼかす。</li>
+<li>Blur Attribute を複製(Ctrl + Shift + D)し、10 にする。<b>Add</b> の Math ノードで、両方の出力を足す。広がった範囲(64)と、より強いハイライト(10)を作るため。</li>
+<li>Math の Value 出力を、空の Group Output ソケットにつなぐ。モディファイアに「Value」という新しいフィールドが現れる。サイドバー(N)の Group で、名前を「Construction」に変更し、Default Attribute に「<b>weld</b>」と入力。「weld」を、モディファイアの Construction の欄にもコピーして貼り付ける。</li>
+<li>Shading ワークスペースに戻り、Attribute ノードを複製/追加して「weld」を入力し、プレビュー。</li>
+</ol>
+<p>ジオメトリノードに戻り、動画のノードを追加します(左から右へ):Evolution(アニメーションする値)から「Fade」の値を引く Subtract ノード、その結果を、Add の結果から引いてより大きなフェードを作る Subtract、そしてこのフェードを前のノード(Blur Attribute)に足す Add です。値を変えることで、シェーディングへの大きなフェードの影響を制御できます。GN-construction_fx モディファイアにパラメーターを追加するため、Group Input を選び <b>Ctrl + H</b> で他の入力ソケットを表示します。Subtract の Value 入力を Group Input の出力ソケットにつなぎ、サイドバー(N)で名前を「<b>Fade</b>」に変更します。</p>
+<h2>溶接(Weld)エフェクト</h2>
+<p>「weld」アトリビュートで、Principled BSDF の発光に影響する溶接エフェクトを作ります。既存の Attribute ノードを使って、次の構成を作ります。</p>
+<ul>
+<li>「weld」アトリビュートの範囲を <b>Map Range</b> で変更。</li>
+<li><b>Voronoi Texture</b>(Scale 84、Randomness 0。自由に調整可)。</li>
+<li>「weld」アトリビュートを引いて、Voronoi Texture を「切り抜く」。</li>
+</ul>
+<h3>幕間:カラーマネジメント</h3>
+<p>Blender には、<b>Color Management</b> の <b>View Transform</b> で、色を表示する方法がいくつかあります。制作では早い段階で設定しますが、特定の「ルック」を探すときにも変更できます。詳しくはライティング&レンダリングの章で。View Transform を AgX から <b>Filmic</b> に変えると、印象が変わります。AgX はより彩度を落とし、自然なフィルムの応答を目指したもの、Filmic は(今回の場合)より直接的に芸術的な影響を与えられます。これ以降は Filmic、Look は <b>Medium High Contrast</b> を使います。</p>
+<ol>
+<li>「weld」アトリビュートから、既存の Map Range をコピーして、フェードを追加する。Linear から <b>Smooth Step</b> に(より緩やかなグラデーション)。From Min を 0.2 にして、アトリビュートからのグラデーション量に影響させる。</li>
+<li>Mix Color(Subtract)を複製し、動画のようにつないで、<b>Add</b> にする。その後に <b>Color Ramp</b> を追加し、ストップを2つ足して、動画のような色(または好みの色)にする。熱を持った金属のような見た目になります。</li>
+<li>Color Ramp の出力を、<b>Emission Color</b> につなぐ。<b>Multiply</b> の Math ノード(値 10)を追加し、Emission の Color の下の <b>Strength</b> につなぐ(この値で、発光の強さが変わる)。</li>
+<li>フレームを付けて「weld effect」と名付ける。モディファイアパネルの <b>Fade</b> で、全体の効果を調整できます。</li>
+</ol>
+<h3>(任意)ノーマルのフェード</h3>
+<p>作られるノーマルに影響させる手順です。「weld」の出力から新しい Map Range をドラッグで追加。「normal」フレーム内に Mix Color(Subtract)を追加し、新しい Map Range と既存の Mix Color につなぎます(接続が「反転」していることを確認)。望む効果になるよう、Subtract ノードの <b>Clamp Result</b> を切り替えます。Map Range の From Min を 0.3 にして、溶接エフェクトがノーマルに影響しないようにします。</p>
+<h2>(任意)じょうろに色を付ける</h2>
+<p>ジオメトリノードで、じょうろの色を変えられるようにします。利点は次のとおりです。</p>
+<ul>
+<li>じょうろを複製した後、ジオメトリノードのモディファイアで色を変えても、元のじょうろ(赤)は変わらない。</li>
+<li>色を変えるためだけに、マテリアルを複製する必要がない。</li>
+<li>粗さ、ノーマル、発光など、ほかのマテリアルのプロパティにも使える。</li>
+</ul>
+<p>「top_color」と「bottom_color」という2つのカラーアトリビュート(<b>Face Corner</b>、<b>Byte Color</b>)を作ります。シェーダーエディターで動画の構成をコピーします(基本的に同じことを、色をジオメトリノードのデータで制御するために分けて行っています)。ジオメトリノードエディターでも動画の構成をコピーし、Color Ramp の色を、上と下のデフォルトカラーにそのままコピーします。</p>
+<h2>(任意)薄膜(Thin Film)</h2>
+<p>一部の素材は、熱処理でアルマイト膜の層を作ります。薄膜は <b>Cycles のみ</b>で対応し、EEVEE(Material Preview)では動作しません。<b>警告</b> Principled BSDF で Metallic が有効だと、動作しません。</p>
+<ul>
+<li>「uv_thin_film」という新しいUVマップを作り、きれいなグラデーションにする(<b>Thickness</b> に影響します)。変更するときは、このUVマップが選択されているか確認。</li>
+<li><b>Separate XYZ</b> を追加し、Y 軸でグラデーションを確認。<b>Map Range</b> で厚みの範囲(To Max、From Max)を調整。範囲が大きいほど、色のバリエーションが増える。125〜600 nm の値を使う。</li>
+<li>IOR を 2 に。値が高いほど、色が強くなる。</li>
+</ul>
+<p>完成ファイル:watering_can_shading.blend(原文ページ参照)。いろいろなテクスチャと設定を自分で試してみましょう。</p>
+<h2>まとめ</h2>
+<p>ジオメトリノードの結果をシェーダーエディターへ出力する方法、さまざまなテクスチャでのプロシージャルな作業、プロシージャルならじょうろのトポロジーを後から調整できること、メッシュの部分ごとに別のテクスチャを割り当てて、異なるノーマルの結果を作る方法、カラーマネジメントの設定が、シーンの見た目(今回は溶接の色)にどう影響するかを学びました。</p>
+
+<nav class="pager"><a href="blender_4-5_lts_materials_shader_editor.html">← マテリアルとシェーダーエディター</a><a href="blender_4-5_lts_lighting-rendering-theory-cycles.html">ライティングとレンダリングの基礎(CyclesとEEVEE) →</a></nav>
+</main></body></html>
