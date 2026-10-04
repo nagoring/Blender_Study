@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>カーブの作成 - Blender基礎 4.5 LTS 日本語ガイド</title>
+<link rel="stylesheet" href="../style.css"></head><body><main>
+<p><a href="../index.html">← 目次へ</a></p>
+<h1>カーブの作成</h1>
+<p class="note">Blender Studio「Blender Fundamentals 4.5 LTS」の無料レッスンを、日本語で要点をまとめた非公式の学習ガイドです(逐語訳ではありません)。原文: <a href="https://studio.blender.org/training/blender-fundamentals-45-lts/blender_4-5_lts_creating-curves/">Creating Curves</a></p>
+<h2>カーブの利点と注意点</h2>
+<p>メッシュ以外に、カーブでの作成が向くものがあります。</p>
+<ul>
+<li>チューブ、ワイヤー、ロープを簡単に作れる</li>
+<li>多くの場合、扱いが簡単</li>
+<li>モディファイアがメッシュを変形するときの元データにも使われる</li>
+<li>2D画像エディターの「ペン/ベクター」ツールに近い操作感</li>
+</ul>
+<p>注意点(このコースの範囲):表面をメッシュのように編集するには、先にメッシュへ変換が必要です。モードはオブジェクトモードと編集モードの2つだけで、NURBSは扱いません。</p>
+<h2>ベジェカーブを作る</h2>
+<ol>
+<li>全削除して <b>Curve › Bezier</b> を追加(アウトライナーでは緑のカーブアイコン)。</li>
+<li>編集モードで<b>コントロールポイント</b>(中央の点)とその両側の<b>ハンドル</b>を G で動かし、形を整えます。拡大縮小や回転でアーチも作れます。</li>
+<li><b>E</b> で押し出して新しいコントロールポイントを作れます。</li>
+<li><b>V</b>(Set Handle Type)でハンドルの種類を変更。Vector にすると直線になり、新しい点にも引き継がれます。種類ごとに色が違います。Automatic は隣の点に追従します。</li>
+</ol>
+<h2>カーブメニュー(W)</h2>
+<p>メッシュと同様に Subdivide が使えます。カーブを閉じるには <b>Alt + C</b>(または W › Toggle Cyclic)。</p>
+<h2>カーブの設定</h2>
+<ul>
+<li>Curve Data の <b>Resolution Preview</b>:コントロールポイント間の点の数を決める。</li>
+<li>Geometry タブの <b>Extrude</b> を上げると、カーブに厚みが付く。</li>
+<li>コントロールポイントを選んで <b>Ctrl + T</b> でティルト(ねじり)、<b>Alt + S</b> で半径を調整。サイドバー(N)の Tilt / Radius でも変更可。全選択して90度ティルトすると、押し出しが上向きになる。</li>
+<li>Extrude を0にして、Bevel タブの <b>Depth</b> を上げると、円断面のチューブになる。Resolution で滑らかさを調整。</li>
+</ul>
+<h2>2Dカーブ</h2>
+<ol>
+<li>Curve Circle を追加し、カーブのプロパティで Curve Type を 3D から <b>2D</b> に変更(Z軸方向の操作ができなくなる)。</li>
+<li><b>Fill Mode</b> を Front にすると、塗りつぶされます。</li>
+<li>トップビューで形を編集。別の円を追加(Shift + D で複製も可)すると、最初のカーブから切り抜かれます。</li>
+<li>2Dでも、Extrude や Bevel で厚みを付けられます。</li>
+</ol>
+<h2>ミニ課題</h2>
+<ul>
+<li><b>3Dカーブ</b>:Screwモディファイアを使ってワイングラスを作る(参考資料は自由。ワイングラスには様々な形があります)。</li>
+<li><b>2Dカーブ</b>:Fill Mode を「Both」にしてハート形を作る。グリッドを基準に、左右対称にするため両側のコントロールポイントのハンドル長を揃えます。</li>
+</ul>
+<h2>まとめ</h2>
+<p>カーブの利点、2Dと3Dカーブの違い、カーブの設定変更、ハートとワイングラスの作成を学びました。</p>
+
+<nav class="pager"><a href="blender_4-5_lts_delete-separate-merge-connect.html">← 削除・分離・結合・接続</a><a href="blender_4-5_lts_modifiers.html">モディファイア →</a></nav>
+</main></body></html>

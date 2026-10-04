@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>削除・分離・結合・接続 - Blender基礎 4.5 LTS 日本語ガイド</title>
+<link rel="stylesheet" href="../style.css"></head><body><main>
+<p><a href="../index.html">← 目次へ</a></p>
+<h1>削除・分離・結合・接続</h1>
+<p class="note">Blender Studio「Blender Fundamentals 4.5 LTS」の無料レッスンを、日本語で要点をまとめた非公式の学習ガイドです(逐語訳ではありません)。原文: <a href="https://studio.blender.org/training/blender-fundamentals-45-lts/blender_4-5_lts_delete-separate-merge-connect/">Delete, Separate, Merge &amp; Connect</a></p>
+<p>メッシュのトポロジー(流れ)を制御するための、削除・分離・結合・接続の方法です。情報量が多いので、各自で十分に試してください。</p>
+<h2>編集モードでの削除</h2>
+<p>平面を追加して3回細分化し、<b>X</b> のメニューで試します。</p>
+<ul>
+<li><b>Vertices</b>:角の頂点を削除すると、その頂点を含む面が消える。周囲を囲まれた頂点なら4つの面が消える。</li>
+<li><b>Edges</b>:角の辺を2本選んで削除すると面が消える。1本だけでは別の辺が残る。</li>
+<li><b>Faces</b>:選んだ面だけを削除。</li>
+<li><b>Edge Loops</b>:辺ループを削除して残りは維持(複数ループも可)。一部だけ選んだループを削除すると、面が三角形で埋まる。</li>
+<li><b>Dissolve Vertices</b>(Ctrl + X も可):頂点や辺を取り除きつつ、表面はなるべく維持する。</li>
+<li><b>Collapse Edges & Faces</b>:後述のマージ機能と同様に動作する。</li>
+</ul>
+<h2>分離と結合</h2>
+<ul>
+<li><b>P</b>:選択を分離して新しいオブジェクト(Cube.001など)にする。ピボットポイントもコピーされる。</li>
+<li><b>Ctrl + J</b>:複数オブジェクトを結合。<b>最後に選んだオブジェクト</b>が基準になり、名前も引き継がれる。</li>
+<li>結合後に編集モードで <b>P › By Loose Parts</b> とすると、つながっていない島ごとに別オブジェクトへ分離できる。</li>
+</ul>
+<h2>スプリットとリップ</h2>
+<p>別オブジェクトにせず、メッシュデータ内で切り離す方法です。</p>
+<ul>
+<li><b>Y</b>:選択した面をスプリット(切り離し)。G で動かせる。</li>
+<li><b>V</b>:辺ループなどをリップ(裂く)。</li>
+</ul>
+<h2>マージ(M)</h2>
+<ul>
+<li><b>By Distance</b>:距離の近い頂点を統合。オペレーターパネルの距離を上げると、より多くが統合される。下部に統合された数が表示される。</li>
+<li><b>At Center</b>:選択した頂点を中心で統合。</li>
+<li><b>At Cursor</b>:3Dカーソル位置に統合(先に Shift + S でカーソルを頂点へ)。</li>
+<li><b>Collapse</b>:選択を1点にまとめる。</li>
+<li><b>At First / At Last</b>:選択順に応じて、最初/最後の頂点に統合。</li>
+<li><b>Auto Merge</b>(サイドバー › Tool › Transform):自動で統合。便利ですが、予期せず統合される場合は無効にしましょう。</li>
+</ul>
+<h2>接続</h2>
+<ul>
+<li><b>J</b>:選んだ2頂点を面に沿って接続。ナイフツールの代わりに使えることも。</li>
+<li><b>F</b>:選んだ辺や頂点から面を作る(辺を1本選んで繰り返すと、面が連続して作れる。隣り合う2辺や角の頂点なら三角形になる)。</li>
+<li><b>F2アドオン</b>:Preferences(Ctrl + ,)› Add-ons で「F2」を検索して有効にすると、頂点1つ選んで F で、カーソルに追従して面を作れる(右クリックでキャンセルすると隣の辺の長さに基づきスナップ)。</li>
+<li><b>Bridge Edge Loops</b>:2つの選択をつなぐ。立方体を複製して向かい合う面を選び、<b>Ctrl + E › Bridge Edge Loops</b>。1つの立方体で向かい合う面をインセットして使うと、トンネルを作れます。パラメーターはオペレーターパネルで調整。</li>
+</ul>
+<h2>ミニ課題</h2>
+<p>削除、リップ、フィル(F)、ベベル、ブリッジを使って、原文の球体を再現してみましょう。</p>
+<h2>まとめ</h2>
+<p>削除、分離(P)と結合(Ctrl + J)、マージ(M)、接続・面作成・ブリッジ(J、F、Ctrl + E)を学びました。</p>
+
+<nav class="pager"><a href="blender_4-5_lts_bevel-tool.html">← ベベルツール</a><a href="blender_4-5_lts_creating-curves.html">カーブの作成 →</a></nav>
+</main></body></html>
