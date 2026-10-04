@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>エフェクトと調整レイヤー - Blender基礎 4.5 LTS 日本語ガイド</title>
+<link rel="stylesheet" href="../style.css"></head><body><main>
+<p><a href="../index.html">← 目次へ</a></p>
+<h1>エフェクトと調整レイヤー</h1>
+<p class="note">Blender Studio「Blender Fundamentals 4.5 LTS」の無料レッスンを、日本語で要点をまとめた非公式の学習ガイドです(逐語訳ではありません)。原文: <a href="https://studio.blender.org/training/blender-fundamentals-45-lts/blender_4-5_lts_effects_and_adjustment_layers/">Effects &amp; Adjustment Layers</a></p>
+<p>エフェクトと調整レイヤー、そしてスピードコントロールの扱いです。</p>
+<h2>じょうろのシーケンスを追加する</h2>
+<p>エフェクトを加えるために、まず、レンダリングしたじょうろの連番を追加します。Video Editing プリセットを開き、レンダリングした連番を、A で全画像を選んでインポートします。レンダー解像度を調整し、Transform でストリップの Scale を両軸 1 にします。最後に、連番の終了フレームを範囲で合わせます(今回は 80 フレーム目)。</p>
+<h2>エフェクトと調整レイヤー</h2>
+<p>Glow を加えたいストリップを選び、<b>Shift + A › Effect Strip</b> で Glow ストリップを追加します。Glow の設定は Strip タブで調整できます。</p>
+<p><b>Glow ストリップは連番ストリップに付いている?</b> はい。追加した他のエフェクトストリップも同様です。ストリップを動かしても Y 軸方向には動きません。移動するには両方のストリップを選ぶ必要があり、元のストリップをエフェクトのストリップより上に動かすと、エフェクトは適用されなくなります。</p>
+<p>ストリップに Glow を直接かける代わりに、<b>調整レイヤー</b>(<b>Shift + A › Adjustment Layer</b>)が使えます。好きな場所に置けるストリップが追加され、この新しいストリップに Glow を付けると、調整レイヤーの<b>長さ</b>の範囲にだけ適用されます。</p>
+<div class="note"><b>重要</b> Glow(および色調整)は、View Transform が「<b>Standard</b>」で適用されます。このため、色が白に飛びやすくなります。グレアのエフェクトは、事前にコンポジターでかけておきましょう。</div>
+<h2>スピードコントロール</h2>
+<p><b>Effect Strip › Speed Control</b> を追加します(すぐには動作せず、先にスピードコントロールの種類を設定する必要があります)。<b>Multiply</b> で値を 2 にすると2倍速で、アニメーションは 40 フレーム目で止まります。0.5 にすると、アニメーションの完了までに2倍の時間がかかります(ストリップの長さが足りなければ延ばします)。タイミングをより細かく決めるには、<b>リタイミングキー</b>を使います。</p>
+<h2>まとめ</h2>
+<p>エフェクトストリップの追加、調整レイヤーの追加と使い方、スピードコントロールストリップでの速度の上げ下げを学びました。</p>
+
+<nav class="pager"><a href="blender_4-5_lts_importing-files.html">← ファイルの読み込み</a><a href="blender_4-5_lts_text.html">テキスト →</a></nav>
+</main></body></html>
