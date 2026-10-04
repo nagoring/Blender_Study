@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blenderを起動する - Blender基礎 4.5 LTS(日本語ガイド)</title>
+<link rel="stylesheet" href="../style.css"></head><body><main>
+<p><a href="../index.html">← 目次へ</a></p>
+<h1>Blenderを起動する</h1>
+<p class="note">Blender Studio「Blender Fundamentals 4.5 LTS」の無料レッスンを、日本語で要点をまとめた学習ガイドです(逐語訳ではありません)。原文: <a href="https://studio.blender.org/training/blender-fundamentals-45-lts/blender_4-5_lts_launching-blender/">Launching Blender</a>(著者: Beau Gerbrands)。</p>
+
+<h2>はじめに</h2>
+<p>このコースは Blender 4.5 LTS を前提に作られています。まず公式サイトから 4.5 LTS をダウンロードしてインストールし、起動しましょう。(なお、5.2 でもおおむね互換ですが、一部の機能は UI が異なる場合があります。)</p>
+
+<h2>スプラッシュ画面</h2>
+<ul>
+<li><b>New File</b>:用途別(ビデオ編集など)に設定済みの新規ファイルを開く。</li>
+<li><b>Open</b>:既存の .blend ファイルを開く。</li>
+<li><b>Recover Last Session</b>:直前に作業していたファイルを復元して開く。</li>
+<li><b>Recent Files</b>:最近使ったファイルの一覧。</li>
+<li><b>Donate</b>:開発への寄付ページ。</li>
+<li><b>What's New</b>:今のバージョンの新機能紹介ページ。</li>
+</ul>
+<p>スプラッシュ画面以外の場所をクリックすると閉じて、作業を始められます。</p>
+
+<h2>環境設定を開く</h2>
+<p>左上のメニュー <b>Edit › Preferences</b> で設定ウィンドウが開きます。</p>
+
+<h3>Interface(インターフェース)</h3>
+<p><b>Resolution Scale</b> で UI の大きさを変更できます。高解像度モニターや小さい画面では、見やすいサイズに調整してください。後からいつでも変更できます。</p>
+
+<h3>Input(入力)</h3>
+<ul>
+<li>中ボタン(MMB)がない場合は、<b>Alt</b> などのキーで中ボタンをエミュレートできます。</li>
+<li>ペンタブレットにも対応。筆圧を使えるためペイントやスカルプトが正確になり、手首にも楽です。一方でスクロールホイールがないため、一部の操作はやや遅くなります。</li>
+</ul>
+
+<h3>Keymap(キーマップ)</h3>
+<p>多くのソフトは左クリック(LMB)で選択しますが、Blender では<b>右クリック(RMB)で選択</b>する設定も選べます。選択と操作(移動など)を別のボタンに分けることで切り替えが速くなり、ウェイトペイントなどで特に効果的です。指の負担も分散されます。コースでは RMB を推奨していますが、どちらを使うかは好みです。</p>
+
+<h3>System(システム)</h3>
+<p>最上部の <b>Cycles Render Devices</b> で、レンダリングに使うハードウェアを選びます。</p>
+<table>
+<tr><th>お使いのGPU</th><th>選ぶ項目</th></tr>
+<tr><td>NVIDIA</td><td>CUDA(互換性が高く安定、CPU負荷が軽い)または OptiX(レイトレーシング専用で高速)</td></tr>
+<tr><td>AMD</td><td>HIP(HIP RT でレイトレーシングも有効化可)</td></tr>
+<tr><td>Intel</td><td>oneAPI</td></tr>
+<tr><td>Apple</td><td>Metal(MetalRT で高速化)</td></tr>
+</table>
+<p>ハードウェアによっては GPU と CPU の両方を有効にすると性能が上がります。</p>
+
+<h2>設定の保存</h2>
+<p>設定が終わったら、<b>Save Preferences</b> を押して次回以降も保持されるようにします。</p>
+
+<h2>まとめ</h2>
+<p>快適に作業するための基本設定(UIの大きさ、入力、キーマップ、レンダーデバイス)を行いました。</p>
+
+<nav class="pager"><span></span><span class="todo">次: ビューポートのナビゲーション(準備中)</span></nav>
+</main></body></html>
