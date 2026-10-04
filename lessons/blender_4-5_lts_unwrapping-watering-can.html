@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>じょうろをUV展開する - Blender基礎 4.5 LTS 日本語ガイド</title>
+<link rel="stylesheet" href="../style.css"></head><body><main>
+<p><a href="../index.html">← 目次へ</a></p>
+<h1>じょうろをUV展開する</h1>
+<p class="note">Blender Studio「Blender Fundamentals 4.5 LTS」の無料レッスンを、日本語で要点をまとめた非公式の学習ガイドです(逐語訳ではありません)。原文: <a href="https://studio.blender.org/training/blender-fundamentals-45-lts/blender_4-5_lts_unwrapping-watering-can/">Unwrapping Watering Can</a></p>
+<p>UVグリッドを使って、じょうろを展開します。ここで作るUVレイアウトは、のちのジオメトリノードの「構築」エフェクトにも影響しますが、あとから変更もできます。</p>
+<h2>展開を始める</h2>
+<ol>
+<li>watering_can.blend を開き、UV Editing ワークスペースへ。作業を速くするため、Mirror モディファイアは有効のままです。</li>
+<li>Material タブで New を押し(4.5.3 では少しフリーズすることがあります)、名前を「watering_can」に。</li>
+<li>Base Color の黄色い入力 › Image Texture › New。名前を「grid」、Generated Type を UV Grid にして New Image。ビューポートシェーディングで Texture を有効にして、モデル上でグリッドを確認します。</li>
+<li>注ぎ口と持ち手の周囲にシームのループを入れる。オブジェクトの「自然な」切れ目にシームを入れ、片側の中央にもシームを入れる。注ぎ口の先(ローズ)の周りにも入れて展開する。</li>
+<li>Mirror モディファイアを適用して、もう一度展開する。</li>
+</ol>
+<h2>ライブアンラップ</h2>
+<p>本体中央の大きな部分のUVが「曲がって」います。<b>Live Unwrap</b> と頂点のピン留めで解決します。</p>
+<ol>
+<li><b>UV › Live Unwrap</b> をオンにする。</li>
+<li>UVの「上」と「下」(実際は側面)を <b>UV › Pin(P)</b> でピン留め。ピン留めした頂点を回転し、垂直方向に動かして、側面をまっすぐにする。</li>
+<li>さらに、上端か下端のピン留めした頂点を選び(持ち手や注ぎ口の頂点は含めない。これらもまっすぐになってしまうため)、<b>W</b> のコンテキストメニューから <b>Align Auto</b> を選んで整列する。</li>
+<li>動画のように、上下にシームを追加する。</li>
+<li><b>UV › Pack</b> でUVアイランドを近くに詰めて、整理する。</li>
+<li><b>L</b>(Select Linked)で、メッシュのアイランドを選択できます。UVエディターでも3Dビューポートでも、カーソルを合わせて L を押すだけです。本体の上下の部分を L で選び、<b>U › Unwrap Minimum Stretch</b> で展開し、再度パッキングする。</li>
+</ol>
+<h2>Average Island Scale</h2>
+<p>UVアイランドのスケールがバラバラな場合は、すべてのUVを選び、<b>UV › Average Island Scale</b> で揃え、再度パッキングします。</p>
+<h2>サブディビジョンサーフェスのクリース</h2>
+<p>モデリングの章で扱わなかったのは、Subdivision Surface モディファイアを追加するとUVに影響することを示すためと、ジオメトリノードの章への準備のためです。</p>
+<ol>
+<li>Layout ワークスペースで、Texture シェーディングを有効にし、<b>W › Shade Smooth</b> で全体をスムーズシェーディングに。</li>
+<li><b>Ctrl + 2</b> でレベル2の Subdivision Surface を追加。モディファイアのオン/オフ(または Ctrl + 0 と Ctrl + 2)で、UVが変わることを確認できます。</li>
+<li>解決策は<b>クリース</b>です。編集モードで、クリースを付ける辺ループを選び、<b>Shift + E</b> でドラッグして、0〜1の値を設定します。シームのように辺の色が変わる辺データで、元のトポロジーの近くに、より鋭い角が作られます。</li>
+<li>動画のようなループと、じょうろの底にクリースを付ける。UVがおかしな動きをする箇所には、「サポートループ」を足す。モデル全体を見て、クリースを付けられる箇所を探しましょう。</li>
+</ol>
+<p>この章は以上です。次の章では、じょうろから離れて、キャラクターのリギングを扱います。</p>
+<h2>まとめ</h2>
+<p>ライブアンラップとピン留め、コンテキストメニューから Align などの操作を使うこと、L による選択、Unwrap Minimum Stretch、Average Island Scale、Subdivision Surface でのクリースを学びました。</p>
+
+<nav class="pager"><a href="blender_4-5_lts_what-is-unwrapping.html">← UV展開</a><a href="blender_4-5_lts_rigging_intro.html">リギング入門 →</a></nav>
+</main></body></html>
