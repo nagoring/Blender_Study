@@ -1,0 +1,56 @@
+<p>カスタムプロパティと<b>ドライバー</b>を使って、服の表示/非表示、IK/FK の切り替え、ビューポートの品質などを、アニメーターが制御できるようにします(練習用:sky_05_ease_of_use.blend、原文ページ参照)。</p>
+<h2>カスタムプロパティ</h2>
+<p>スカーフの表示を切り替えられるようにします。まず、クリックできるトグルを作ります。</p>
+<ol>
+<li>Root を選びます(Scarf1 でも可)。</li>
+<li>Properties › Bone › <b>Custom Properties</b> で New を押し、設定アイコンで編集。</li>
+<li>Type を <b>Boolean</b>、Name を「Scarf」、Default Value を True に。説明(Description)は任意で、アニメーターがカーソルを合わせたときに表示されます。</li>
+<li><b>Library Overridable</b> を True に。</li>
+</ol>
+<div class="note"><b>警告:ポーズモードで行う</b> カスタムプロパティは編集モードでも作れますが、アニメーターには見えず、編集もできません。<br><b>重要:Library Overridable</b> 常に True にします。そうしないと、リグをショットファイルにリンクしたとき、プロパティをアニメーションできません。<br>ボーンへの追加は、Bone タブで行います。Object や Armature タブと間違えないように。</div>
+<p>新しいカスタムプロパティは、サイドバーにもあります。現時点では何も起きません。</p>
+<h2>スカーフのドライバー</h2>
+<p>GEO-sky-Scarf のビューポートとレンダーの表示に、<b>ドライバー</b>を作ります。</p>
+<ol>
+<li>アウトライナーで GEO-sky-Scarf の Enabled アイコンを右クリック › <b>Add Driver</b>。ポップアップが開き、何も指していない変数「var」が初期設定されます。</li>
+<li>変数の Type を Transform Channel から <b>Single Property</b> に変更。</li>
+<li>Object に RIG-sky、Path に <code>pose.bones["Root"]["Scarf"]</code> と入力します。これは「RNAパス」で、そのプロパティの値にアクセスする、Python のコード行です。</li>
+<li>上の <b>Expression</b> には <code>var</code> と入力します(追加の計算なしで、変数の値をそのまま最終値にします)。</li>
+</ol>
+<p><b>Tip</b> Preferences › Interface › Display › <b>Python Tooltips</b> を有効にすると、プロパティにカーソルを合わせて RNA パスを確認できます。</p>
+<p>これでプロパティがオブジェクトの表示を制御しますが、動作が逆になっています。</p>
+<h2>ドライバーの編集</h2>
+<p>結果を反転するため、Expression を編集します。アウトライナーで GEO-sky-Scarf の Enabled アイコンを右クリック › <b>Edit Driver</b> で、Expression に <code>not var</code> と入力します(これも Python です)。</p>
+<h2>ドライバーのコピー</h2>
+<p>レンダーの表示も忘れずに。Enabled アイコンを右クリック › <b>Copy Driver</b>、Render アイコンを右クリック › <b>Paste Driver</b>。</p>
+<h2>ボーンコレクションの表示</h2>
+<p>スカーフのボーンは1つのボーンコレクションに入れているため、プロパティがオフのときは、そのボーンも隠せます。今度は速い方法で行います。Root を選び、サイドバーの「Scarf」プロパティを右クリック › <b>Copy as New Driver</b>。「Clothes」ボーンコレクションの Visibility を右クリック › <b>Paste Driver</b>。多くの場合、「Copy as New Driver」がドライバーを素早く初期化する方法です。</p>
+<div class="note"><b>注意:ドライブされたプロパティはロックされます</b> アニメーターは、そのボーンコレクションの表示を自分では制御できなくなります。許可したい場合は、階層に「Clothes (Driven)」のようなコレクションを追加します。</div>
+<h2>FK/IK の切り替え</h2>
+<p>手足ごとに FK と IK を簡単に切り替えられるようにします。ほぼ自力でできますが、大まかな手順は次のとおりです。</p>
+<ol>
+<li>Root に「IK Left Arm」プロパティを作る。Float(0.0〜1.0)か Boolean(True/False)のどちらでも可。既定値は、デフォルトで IK にするかどうかで決めます。</li>
+<li>このプロパティで、Forearm.L の IK コンストレイントの <b>Influence</b> と、Hand.L の Copy Rotation の Influence を制御する。</li>
+<li>任意で、「Arms IK」と「Arms FK」のボーンコレクションを左右に分け、それらもドライブする。</li>
+<li>4本の手足すべてで繰り返す。</li>
+</ol>
+<p><b>Tip:既定値へのリセット</b> Blender のどのプロパティも、カーソルを合わせて <b>Backspace</b> で既定値に戻せます。プロパティは Root 以外のどのボーンにも置けます。</p>
+<h2>品質(Quality)プロパティとドライバー</h2>
+<p>複雑なキャラクターには、Multires、Bevel、ジオメトリノードなど、重いモディファイアが多くあります。アニメーターは、そうしたモディファイアより、再生の FPS を重視します。ビューポートでの複雑さを、アニメーターが制御できるようにします。</p>
+<ol>
+<li>Root に、<b>Quality</b> という Integer のプロパティを追加。Min と Default を 0、Max を 2 に。</li>
+<li>右クリック › Copy as New Driver。</li>
+<li>任意のオブジェクトの Subdivision モディファイアの「Levels Viewport」にペースト。</li>
+<li>A ですべてのオブジェクトを選び、ドライバーを貼ったプロパティを右クリック › <b>Copy Driver to Selected</b>。</li>
+</ol>
+<p>これで、キャラクター全体のサブディビジョンのレベルを簡単に変更できます。他のモディファイアにも、簡単に応用できます。制作で使えるリグにするために欠かせません。</p>
+<h2>おわりに</h2>
+<p>ドライバーの用途は無限で、複雑な式にはまだ触れていません。このコースで、多くのアニメーターが喜ぶレベルの仕上がりにできました。基本を忘れないでください。</p>
+<ul>
+<li><b>高速に</b>:アニメーションに不要なモディファイアは無効にする。</li>
+<li><b>直感的に</b>:探す場所の1〜2番目にあるようにする。</li>
+<li><b>きれいに</b>:関係ないものは隠し、ビューポートで見栄えよくする。</li>
+</ul>
+<p>完成ファイル:sky_06_drivers.blend(原文ページ参照)。</p>
+<h2>まとめ</h2>
+<p>カスタムプロパティとは何か、ドライバーとは何か(作成、コピー、編集)、そしてリギングでの、それらの活用例を学びました。</p>
