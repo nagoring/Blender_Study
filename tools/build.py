@@ -18,6 +18,7 @@ for i, l in enumerate(done):
 <p><a href="../index.html">← 目次へ</a></p>
 <h1>{l['ja']}</h1>
 <p class="note">Blender Studio「Blender Fundamentals 4.5 LTS」の無料レッスンを、日本語で要点をまとめた非公式の学習ガイドです(逐語訳ではありません)。原文: <a href="{BASE}{l['url']}/">{html.escape(l['en'])}</a></p>
+<p class="video">🎬 <b>このレッスンの動画は原文ページで視聴できます。</b> <a href="{BASE}{l['url']}/">原文ページを開く(動画付き)</a><br><small>このページは動画を補助する日本語の要点です。操作の流れは動画で確認してください。</small></p>
 {body}
 <nav class="pager">{prev}{nxt}</nav>
 </main></body></html>
