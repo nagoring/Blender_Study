@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blenderのモード - Blender基礎 4.5 LTS 日本語ガイド</title>
+<link rel="stylesheet" href="../style.css"></head><body><main>
+<p><a href="../index.html">← 目次へ</a></p>
+<h1>Blenderのモード</h1>
+<p class="note">Blender Studio「Blender Fundamentals 4.5 LTS」の無料レッスンを、日本語で要点をまとめた非公式の学習ガイドです(逐語訳ではありません)。原文: <a href="https://studio.blender.org/training/blender-fundamentals-45-lts/blender_4-5_lts_blenders-modes/">Blender&#x27;s Modes</a></p>
+<p>モードはBlenderの作業で欠かせない概念です。新規ファイルで全削除(A → X)してモンキーを追加し、各モードを見てみましょう。主なモードは次の6つです(他にもあります)。</p>
+<table>
+<tr><th>モード</th><th>用途</th></tr>
+<tr><td>オブジェクトモード</td><td>既定。単純な変形やモデルの確認</td></tr>
+<tr><td>編集モード</td><td>トポロジー(メッシュの構造)を変えて複雑な形を作る</td></tr>
+<tr><td>スカルプトモード</td><td>粘土のように有機的に形を整える。キャラクター向き</td></tr>
+<tr><td>ウェイトペイント</td><td>主にリギングでボーンの影響度を割り当てる。パーティクルで毛・草・岩の配置場所を決める用途にも使える</td></tr>
+<tr><td>頂点ペイント</td><td>主にシェーディング用の頂点カラー</td></tr>
+<tr><td>テクスチャペイント</td><td>画像ベースの細かな模様や色を描く</td></tr>
+</table>
+<p>この章では主に編集モードを扱います。</p>
+<h2>(任意)各ペイント系モードの概要</h2>
+<ul>
+<li><b>モードの切り替え</b>:Ctrl + Tab でパイメニューが開きます。</li>
+<li><b>スカルプト</b>:ツールバーが変わり、下部に「アセットシェルフ」が現れます。ブラシはどちらからでも選べます。Grabブラシ(G)で耳を伸ばすなどの変形ができます(動画ではペンタブレットを使用)。詳細はスカルプトの章で。</li>
+<li><b>テクスチャペイント</b>:好きな色で描き、結果は.pngなどの画像に保存されます。</li>
+<li><b>ウェイトペイント</b>:青(0)から赤(1)へのグラデーションで表示され、データは画像ではなくメッシュに保存されます。</li>
+<li><b>頂点ペイント</b>:任意の色で塗れ、シェーディングで主に使いますが、ジオメトリノードからも読めます。解像度はウェイトペイントと同様、メッシュ頂点単位です。昔のゲームでは世界の色分けに使われました。</li>
+</ul>
+<h2>まとめ</h2>
+<p>モードごとにモデルの見た目や機能を作り込めること、スカルプト・ウェイト・頂点・テクスチャペイントそれぞれの用途を学びました。</p>
+
+<nav class="pager"><a href="blender_4-5_lts_file-recovery.html">← ファイルの復元</a><a href="blender_4-5_lts_adding-objects.html">オブジェクトの追加 →</a></nav>
+</main></body></html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>メッシュの選択 - Blender基礎 4.5 LTS 日本語ガイド</title>
+<link rel="stylesheet" href="../style.css"></head><body><main>
+<p><a href="../index.html">← 目次へ</a></p>
+<h1>メッシュの選択</h1>
+<p class="note">Blender Studio「Blender Fundamentals 4.5 LTS」の無料レッスンを、日本語で要点をまとめた非公式の学習ガイドです(逐語訳ではありません)。原文: <a href="https://studio.blender.org/training/blender-fundamentals-45-lts/blender_4-5_lts_mesh-selection/">Mesh Selection</a></p>
+<p>メッシュの特定部分を選ぶのは、Blenderの作業で欠かせません。ショートカットが多いので、じっくり練習しましょう。メッシュは<b>頂点・辺・面</b>で構成されます。</p>
+<h2>選択モード</h2>
+<p><b>Tab</b> で編集モードに入り、左上で選択モードを切り替えます。キーボードでは <b>1=頂点、2=辺、3=面</b>。頂点を1つ選んで辺モードにすると選択が消え(辺は頂点2つで構成されるため)、辺を選んで頂点モードに戻すと2頂点が選択されています。面モードでは辺の選択は消えます。Shift で追加選択できます。</p>
+<h2>コンテキストメニューと細分化</h2>
+<p>右クリック(右クリック選択設定なら <b>W</b>)でコンテキストメニューが開き、内容は選択モードで変わります。<b>Subdivide</b> は選択範囲を細かく分割します(選択が必要)。</p>
+<h2>ループ選択</h2>
+<ul>
+<li><b>頂点/辺ループ</b>:辺モード(2)で <b>Alt</b> を押しながら、辺の向きに沿った辺を選択。</li>
+<li><b>フェイスループ</b>:面モードで、縦の辺を選ぶと横方向のループ、横の辺を選ぶと縦方向のループが選ばれます。<b>Shift + Alt</b> で追加。</li>
+<li><b>最短パス</b>:面を選んだ後、<b>Ctrl</b> を押しながら別の面を選ぶと、最短経路でつないで選択。頂点/辺モードでも使えます。</li>
+</ul>
+<h2>選択ツール</h2>
+<ul>
+<li><b>円選択(C)</b>:カーソルの円内を左クリックで選択。ホイールやテンキー +/- でサイズ変更。Shift で解除。使用中はビューを回せません。ツールバーの「Select Circle」は動作が異なるため、他の方法を推奨。</li>
+<li><b>ボックス選択(B)</b>:範囲内を選択。ツールバーの「Select Box」も同様で、Shift で追加、Ctrl で解除。</li>
+<li><b>投げ縄(ツールバーのSelect Lasso)</b>:自由に描いた形の内側を選択。直線側を使うときれいに選べます。Shift で追加、Ctrl で解除。</li>
+<li>ツールバーの選択方法はオブジェクトモードでも使えます。</li>
+</ul>
+<h2>拡大縮小と反転</h2>
+<ul>
+<li><b>Ctrl + テンキー +/-</b>:選択範囲を広げる/狭める(テンキーがなければ Select › More/Less)。</li>
+<li><b>Ctrl + I</b>:選択の反転。小さい範囲を選んで反転する方が速いこともあります。</li>
+</ul>
+<h2>X線表示</h2>
+<p><b>Alt + Z</b> でX線表示を切り替えると、裏側までまとめて選択できます。平行投影では分かりにくいので、ボタンの状態を確認しましょう。</p>
+<h2>まとめ</h2>
+<p>選択モード、コンテキストメニューでの細分化、ループ選択と最短パス、円・ボックス・投げ縄選択、More/Less と反転、X線表示を学びました。</p>
+
+<nav class="pager"><a href="blender_4-5_lts_adding-objects.html">← オブジェクトの追加</a><a href="blender_4-5_lts_extruding.html">押し出し →</a></nav>
+</main></body></html>
