@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>リンクとアペンド - Blender基礎 4.5 LTS 日本語ガイド</title>
+<link rel="stylesheet" href="../style.css"></head><body><main>
+<p><a href="../index.html">← 目次へ</a></p>
+<h1>リンクとアペンド</h1>
+<p class="note">Blender Studio「Blender Fundamentals 4.5 LTS」の無料レッスンを、日本語で要点をまとめた非公式の学習ガイドです(逐語訳ではありません)。原文: <a href="https://studio.blender.org/training/blender-fundamentals-45-lts/blender_4-5_lts_linking-appending/">Linking &amp; Appending</a></p>
+<p>前に触れたとおり、リンクとアペンドは、データを .blend に挿入する方法です。ここで詳しく見ていきます。</p>
+<h2>リンクとアペンド</h2>
+<ol>
+<li>新規ファイルで全削除し、<b>F4 › Link</b> で watering_can コレクションを選ぶと、インスタンス化されたコレクションが作られます。</li>
+<li>これを「実体」にするには、選択して <b>F3</b> で「<b>Make Instances Real</b>」を検索します。アウトライナーで、インスタンスが、実際のじょうろのオブジェクトと空(Empty)に分かれます。空は削除して構いません。</li>
+<li>メッシュ、マテリアル、モディファイアのデータはまだリンクのままです。オブジェクトを完全にローカルにするには、F3 で「<b>make local</b>」を検索します。データをローカルにするレベルは複数あり、ここではすべてを「ローカル」にします。「Selected Objects, Data and Materials」を選ぶと、構築エフェクトのモディファイアを除いて、すべてローカルになります。</li>
+</ol>
+<p><b>アペンド</b>は、参照なしで、単にデータをローカルにします。</p>
+<h2>リグ(キャラクター)のライブラリオーバーライド</h2>
+<p>Sprite キャラクターをダウンロードして進めます(原文ページ参照)。新規ファイルで全削除し、<b>F4 › Link</b> で sprite.blend の <b>Collection › CH-sprite</b> を選びます。CH-sprite を選んだ状態で、F3 で「make」を検索して、<b>ライブラリオーバーライド</b>を作ります。オーバーライドの後は、ポーズモードでキャラクターを操作できます。</p>
+<h2>まとめ</h2>
+<p>インスタンス化されたコレクションを実体にする方法と、データブロックをローカルにする方法を学びました。</p>
+
+<nav class="pager"><a href="blender_4-5_lts_lighting-rendering-watering-can.html">← じょうろのライティングとレンダリング</a><a href="blender_4-5_lts_asset-browser.html">アセットブラウザー →</a></nav>
+</main></body></html>
