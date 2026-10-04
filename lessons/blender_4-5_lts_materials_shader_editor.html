@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>マテリアルとシェーダーエディター - Blender基礎 4.5 LTS 日本語ガイド</title>
+<link rel="stylesheet" href="../style.css"></head><body><main>
+<p><a href="../index.html">← 目次へ</a></p>
+<h1>マテリアルとシェーダーエディター</h1>
+<p class="note">Blender Studio「Blender Fundamentals 4.5 LTS」の無料レッスンを、日本語で要点をまとめた非公式の学習ガイドです(逐語訳ではありません)。原文: <a href="https://studio.blender.org/training/blender-fundamentals-45-lts/blender_4-5_lts_materials_shader_editor/">Materials &amp; Shader Editor</a></p>
+<p>サンプルファイルを使って、さまざまなマテリアルとノードを変更・追加します。Nicole Morena 作の「Cozy Kitchen」(Blender Demo Files のページからダウンロード、「blender-3.5-splash」)を使います。</p>
+<h2>テクスチャの再利用</h2>
+<p>ファイルを開き、Shading ワークスペースを作ります。3Dビューポートで、シーンのシェーダーがコンパイルされるのが見えます(Material Preview のため)。</p>
+<div class="note"><b>なぜ EEVEE のシェーダーがコンパイルされる?</b> 新しいファイルを開いて Material Preview に入るたびに起きます。自分のシーンでは、マテリアルを作業するときに行われます。グラフィックドライバーを更新した後は、再コンパイルが必要です。かかる時間は、複雑さ、シェーダーの数、ハードウェアによって決まります。</div>
+<p>Rendered ビューに切り替えます。多くのオブジェクトに、さまざまなマテリアルがあります。テーブルクロスの柄を、椅子に付けてみましょう。</p>
+<ol>
+<li>テーブルクロスを選ぶと、「Tablecloth.png」というテクスチャの Image ノードがあります。椅子を選び、シェーダーエディターで Shift + A › <b>Image Texture</b> を追加し、画像のファイルアイコンから「Tablecloth.png」を選び、Base Color につなぎます。</li>
+<li>柄がおかしいのは、テクスチャを正しくマッピングする Vector の入力ノードがないためです。<b>Texture Coordinate</b> ノードを追加し、Object ソケットを Vector ソケットにつなぎます。</li>
+<li>それでも解決しないときは、Projection Method を <b>Box</b> に変更します(「トライプラナーマッピング」。画像を箱のようにあらゆる面から投影する、簡単で素早い方法)。<b>Blend</b> の係数で、鋭いエッジをなくせます。</li>
+<li>テクスチャを小さくするには、<b>Vector Math</b> ノードを使います(「Vector Scale」で検索すると、Scale が設定された状態で追加されます)。Texture Coordinate と Image Texture の間につなぎ、Scale を 0.4 などにします。</li>
+<li>色を変えるには、Image Texture と Principled BSDF の間に <b>Color Ramp</b> ノードを置きます。Base Color への接続を外し、Base Color から黒の色へ左ドラッグして色をドラッグし、再接続します。「ストップ」を左クリックして選ぶかドラッグして動かし、選んで色を変えられます。<b>Ctrl + 左クリック</b>で色のストップを追加できます。</li>
+</ol>
+<h2>木の床の調整</h2>
+<p>木の床板がどう作られているか見てみましょう。まず「CAM-wide」を選んで<b>被写界深度</b>を無効にします(レンダリングが速くなり、シェーディングの変更結果が見やすくなる)。床板のオブジェクトを選んで、ノードの構成を確認します。色のストップを調整して、3Dビューポートで結果を確認しましょう。</p>
+<h3>このノード構成で木を作る仕組み</h3>
+<p>左から右へ、最初の4つのノードは次のとおりです。</p>
+<ul>
+<li><b>Generated 座標</b>を使う。</li>
+<li><b>Mapping</b> ノード:テクスチャのマッピングを調整(ここでは、スケールを調整して引き伸ばしている)。</li>
+<li>Vector に別のテクスチャ(ここでは <b>Noise Texture</b>)で影響を与える、やや変わった方法。</li>
+<li>最後の Noise Texture。</li>
+</ul>
+<p>最後の Noise Texture の後の3つのノードは、同じデータを別々に加工します。</p>
+<ul>
+<li>上の Color Ramp:<b>色</b>に影響する。</li>
+<li>もう1つの Color Ramp:<b>Roughness</b> に影響する。ストップを動かすと、木の床の粗さ(光沢)が変わる。色情報を含まないよう、白と黒だけを使う。</li>
+<li><b>Bump</b> ノード:Noise Texture の値を<b>ノーマル</b>として解釈する。</li>
+</ul>
+<p>2つの Noise Texture の各スライダーを動かして、レンダリング結果への影響を確認しましょう。Render Settings で <b>Viewport Denoise</b> を無効にすると、結果が速く見やすくなる場合があります。</p>
+<h2>光の効果を追加する</h2>
+<p>左の2つのランプに、光の効果を追加します。</p>
+<ol>
+<li>Material Preview に切り替え(読み込みに数秒かかる)、ランプを選んでカーソルをスナップし、<b>Mesh › Circle</b> を追加して、ランプの内側に収まるようスケールダウン。選択を下へ押し出して少し拡大し、円錐の形にモデリング。</li>
+<li>新しいマテリアル「light_effect」を作る。</li>
+<li><b>Texture Coordinate</b> を追加し、Generated ソケットから <b>Separate XYZ</b> を追加。Z 出力をプレビューすると、上から下へのグラデーションが見えます。</li>
+<li><b>Color Ramp</b> を追加して Alpha につなぐ。Color Ramp を選び、<b>Ctrl + Shift + D</b> で、接続を保ったまま複製し、上に移動する。これが Base Color になる。色を暖かく居心地のよい色にする。白のストップの値を下げると、オブジェクト全体がより透明になる。</li>
+<li>上の Color Ramp の Color 出力を、Emission Color にもつなぎ、Emission を 1 にする。オブジェクトが、弱い光を放つようになる。設定を調整し、もう1つのランプにも複製する。</li>
+</ol>
+<p><b>Tip</b> Material Preview と Rendered を切り替えると、シェーディングの変更を素早くプレビューし、Rendered で「最終的な」結果を確認できます。マテリアルの複雑さによっては、Rendered のままのほうが速い場合もあります。</p>
+<h2>ミニ課題:カボチャ</h2>
+<p>左上のカボチャに、原文の法線の結果を作ります。カボチャの各セグメントを同じ方法でUV展開する必要があります。Texture Coordinate、Mapping、Noise Texture、Bump のノードを使います。ヒント:Mapping の Scale を変えるとノイズを引き伸ばせ、Noise Texture のパラメーターを調整するとディテールが増え、Bump の Strength を下げて Distance を上げます。</p>
+<h2>まとめ</h2>
+<p>Texture Coordinate ノードと Image Texture の投影方法の組み合わせ、Color Ramp での色の再マッピング、Separate XYZ でのベクトルの分離、テクスチャのデータを色、粗さ、法線など別の用途に分けて使う方法を学びました。シーンのマテリアルを、変更・調整・作成して試してみましょう。</p>
+
+<nav class="pager"><a href="blender_4-5_lts_shading-theory.html">← シェーディングの基礎理論</a><span></span></nav>
+</main></body></html>

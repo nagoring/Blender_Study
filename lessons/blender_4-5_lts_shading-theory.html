@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>シェーディングの基礎理論 - Blender基礎 4.5 LTS 日本語ガイド</title>
+<link rel="stylesheet" href="../style.css"></head><body><main>
+<p><a href="../index.html">← 目次へ</a></p>
+<h1>シェーディングの基礎理論</h1>
+<p class="note">Blender Studio「Blender Fundamentals 4.5 LTS」の無料レッスンを、日本語で要点をまとめた非公式の学習ガイドです(逐語訳ではありません)。原文: <a href="https://studio.blender.org/training/blender-fundamentals-45-lts/blender_4-5_lts_shading-theory/">Shading Theory</a></p>
+<p><b>シェーディング</b>は、マテリアルの特性を加えて、光との相互作用を決める技術です。テクスチャと組み合わせて、<b>フィジカルベースドレンダリング</b>で、木、金属、コンクリート、草、樹皮など、現実の素材の印象を作れます。ここでは、グレーのじょうろを光沢のあるマテリアルに変えていきます。主に使うシェーダーノードは <b>Principled BSDF</b> で、必要になるほとんどのマテリアルのプロパティが入っています。</p>
+<p>練習用に、簡単なセットとライティングが入ったファイル(shading_parameters.zip、原文ページ参照)を使います。3Dビューポートで <b>Z</b> を押し、<b>Rendered</b> を選ぶと、Cycles でのビューポートレンダリングが始まります(ハードウェアによって、開始まで少し時間がかかります)。</p>
+<h2>主なパラメーター</h2>
+<ul>
+<li><b>Base Color</b>:オブジェクトの色。木の板、タイル、デニムなど、あらゆるテクスチャをつなげられます。</li>
+<li><b>Metallic</b>:金属のモデルを有効にし、Base Color を反射色として使います。</li>
+<li><b>Roughness</b>:表面で光がどれだけ散乱するか。値が低いほど滑らかで、0 は完全な鏡、1 は完全に粗い状態です。テクスチャで制御する場合、<b>白が100%の粗さ、黒が0%(完全に滑らか)</b>です。ただし、高ディテールで高周波のバンプ/ノーマルマップでも、表面の粗さを変えられます。</li>
+<li><b>IOR</b>(屈折率):反射の量を決め、値が高いほど反射が強くなります。透過のあるオブジェクトでは意味が変わり、光線がボリューム内でどれだけ曲がるかを決めます。空気、ガラス、水、結晶などは、それぞれ固有の屈折率を持ちます。</li>
+<li><b>Alpha</b>:透明度。RGBに加えて、2Dソフトでおなじみのアルファチャンネルがあり、白黒のチャンネルです。白が100%(不透明)、黒が0%(透明)になります。</li>
+<li><b>Transmission</b>:ガラスや液体を作れます。ノイズの少ないレンダリングが難しく負荷が高く、特に粗さとの組み合わせで顕著です。IOR が、ボリューム内での光の曲がり角度に影響します。</li>
+<li><b>Emission</b>:オブジェクトを発光するマテリアルにし、シーンの残りに光を投げかけます。</li>
+<li><b>Subsurface Scattering</b>:肌、翡翠、牛乳、ロウなどを再現するため、光を内部で散乱させます。Weight を 1 にすると、拡散面から表面下散乱に切り替わります。負荷が高く、ノイズのない状態になるまで通常は時間がかかります。</li>
+<li><b>Volume Scattering</b>:小さな粒子を加えて、ボリューム内で光を散乱させます。Density を上げると、光が通りにくくなります。</li>
+<li><b>Bump/Normal Map</b>:Noise と Bump のノードで、表面のテクスチャを表す法線のディテールを追加できます。</li>
+</ul>
+<h2>シェーディングワークスペース</h2>
+<p>シェーディングワークスペースは、マテリアルの調整やシェーダーエディターでのノード追加に便利です。新規ファイルで Shading ワークスペースに切り替えます(EEVEE がシェーダーをコンパイルするため、少し遅くなることがあります)。左上にファイルブラウザー、左下に画像エディター、そして Material Preview の3Dビューポート、シェーダーエディター、アウトライナー、プロパティがあります。</p>
+<ul>
+<li>立方体を回すと、ビューポートオーバーレイに<b>HDRIプレビュー球</b>が見えます。環境(ライトオブジェクトを含む)の反射とライトの方向を示します。</li>
+<li>ビューポートシェーディングで、サムネイルから別の HDRI を選べます。HDRI の Rotation、Strength、World Opacity、Blur も変更できます。</li>
+<li>12m の平面を追加し、立方体を1m 上げて平面に乗せる。Render Properties で、レンダーエンジンを EEVEE から <b>Cycles</b> に、Device を CPU から GPU に変更し、3Dビューポートで Rendered を有効に。</li>
+<li>HDRI の背景がグレーの背景に置き換わるのは、シーンの World の既定色が使われているためです。ビューポートシェーディングで <b>Scene World</b> をオフにすると、HDRI が戻ります。</li>
+</ul>
+<div class="note"><b>警告</b> これは3Dビューポートでのみ有効です。最終レンダリングでは、HDRI ではなく Scene World の色が使われます。</div>
+<p>シェーダーのパラメーターや HDRI 画像を、自由に試しましょう。</p>
+<h2>まとめ</h2>
+<p>シェーディングワークスペースの構成、各種マテリアルパラメーターと見た目の変化、IOR とは何か、HDRI プレビューの使い方を学びました。</p>
+
+<nav class="pager"><a href="blender_4-5_lts_watering-can-construction.html">← じょうろの構築</a><a href="blender_4-5_lts_materials_shader_editor.html">マテリアルとシェーダーエディター →</a></nav>
+</main></body></html>
