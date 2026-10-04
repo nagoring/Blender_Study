@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UV展開 - Blender基礎 4.5 LTS 日本語ガイド</title>
+<link rel="stylesheet" href="../style.css"></head><body><main>
+<p><a href="../index.html">← 目次へ</a></p>
+<h1>UV展開</h1>
+<p class="note">Blender Studio「Blender Fundamentals 4.5 LTS」の無料レッスンを、日本語で要点をまとめた非公式の学習ガイドです(逐語訳ではありません)。原文: <a href="https://studio.blender.org/training/blender-fundamentals-45-lts/blender_4-5_lts_what-is-unwrapping/">UV Unwrapping</a></p>
+<p>メッシュの<b>UV展開</b>とは何かと、UVエディターを紹介します。次のレッスンでじょうろを展開します。</p>
+<h2>UV展開とは</h2>
+<p>3Dモデルを平らな2Dレイアウトに展開(開く)することです。箱を折り畳んで立体にしたものを、逆に開くイメージです。<b>U</b> は水平軸、<b>V</b> は垂直軸を指します。原文ページから立方体の展開の例(.blend、CC-BY)をダウンロードでき、Space でアニメーションを再生・停止できます。UVエディターでは「選択の同期」が有効なので、編集モードと同じ要素が選択されます。</p>
+<div class="note"><b>注意</b> 画像エディターとUVエディターは似た機能を持ちますが、用途が違います。混同しないようにしましょう。</div>
+<h2>UVエディターの紹介</h2>
+<ul>
+<li>新規ファイルで <b>UV Editing</b> ワークスペースを開きます(既定で編集モード)。Layout に似ていますが、タイムラインがUVエディターに置き換わっています。</li>
+<li>UVエディター右上に、アクティブな「UVMap」の名前が表示されます(新しい展開の既定名)。</li>
+<li>左側に、編集モードと同様の選択モード。サイドバー(N)に Image、Tool、View のオプションがあります。</li>
+<li>オーバーレイで、グリッドの調整、<b>UV Stretch</b>(歪みの表示)などを設定できます。青は歪みがほぼない、赤は大きく伸びている状態を示します。</li>
+</ul>
+<h2>展開とシーム</h2>
+<ol>
+<li>立方体を追加し、UV Editing ワークスペースへ。既定の立方体は展開済みですが、シームが見えていません。<b>UV › Seams from Islands</b> でシームを作れます。<b>アイランド</b>は、展開内でグループ化された、独立した面の領域のことです。3Dビューポートでは、一部の辺が赤くなり、これが<b>シーム</b>です。</li>
+<li><b>Tip</b> 辺のデータ(シーム、クリース、Freestyle、シャープ、ベベル)は、色で区別して表示されます。</li>
+<li>編集モードですべての要素を解除(Alt + A)すると、UVエディターは空になります。</li>
+<li>面の4辺すべてがシームになるように辺を選び、<b>Ctrl + E › Mark Seam</b>(辺が赤くなる)。</li>
+<li>全選択して <b>U</b> でUnwrapメニューを開き、<b>Unwrap Angle Based</b>(最も一般的な方法)。1つの面が、残りの立方体から分離されます。</li>
+<li>UVエディターでも G、R、S が使えます。左上の <b>UV Sync Selection</b> を有効にすると、UVエディターと3Dビューポートの選択が同期されます(UVレイアウトは消えません)。</li>
+<li>シームを数本消すには <b>Ctrl + E › Clear Seam</b>。再度全選択して U で展開します(UVエディター内で U も可)。</li>
+</ol>
+<h2>テクスチャを追加する</h2>
+<p>UVレイアウトの歪みを確認するには、<b>グリッドテクスチャ</b>がよく使われます。UV Stretch が数学的なのに対し、こちらは見た目で確認できます。</p>
+<ol>
+<li>Material タブの Base Color の黄色い入力ソケットを選び、ノードの一覧から <b>Image Texture</b> を選ぶ(ノードは後で扱います)。</li>
+<li>UVエディターで <b>New</b> を選び、名前を「Grid」、Generated Type を <b>UV Grid</b> にして New Image。</li>
+<li>Material タブに戻って、グリッドテクスチャを選択。</li>
+<li>3Dビューポートでは、ビューポートシェーディングを Material から <b>Texture</b> に変更しないと見えません(メニューが見切れたら、MMB で左にドラッグ)。</li>
+</ol>
+<p>これで、UVレイアウトを動かして、3Dビューポートでの変化を確認できます。</p>
+<h2>UV編集のヒント</h2>
+<ul>
+<li>編集モードでスライド(<b>G + G</b>)すると、既定で「Correct UVs」が有効で、UVレイアウトを保ったまま頂点や辺をスライドできます。</li>
+<li>シームがないまま展開すると、画面下に警告が出ます。シームを加えると警告は消えますが、展開が十分な状態という意味ではありません。UV Stretch かグリッドテクスチャで確認しましょう。</li>
+<li>複数のオブジェクトを選んで編集モードで展開すると、UVが1つのレイアウトにまとめられます。オブジェクトが増えるほど、解像度が下がります。</li>
+</ul>
+<h2>アイランドのパッキング</h2>
+<p>原文ページの「Cubetube」(CC-BY)で試せます。UVエディターで <b>UV › Pack Islands</b> を開くと、設定のポップオーバーが出ます。</p>
+<ul>
+<li><b>Shape Method</b>:アイランドの形の計算方法。Boundary Shape の「Hull」は形の簡略化。<b>Exact Shape</b> は正確な形を計算するため、より効率的に詰められます。</li>
+<li><b>Rotation Method</b>:Any(任意の向き)、Axis-aligned(水平/垂直)など。</li>
+<li><b>Margin Method</b>:アイランド間の余白。ベイクで役立ちます。</li>
+</ul>
+<h2>UVとテクスチャのヒント</h2>
+<h3>(任意)2のべき乗</h3>
+<p>画像ベースのテクスチャは、解像度を<b>2のべき乗</b>にすると、CGで最も効率的です。1024×1024(1k)、2048×2048(2k)などで、ほかに 128、256、512、4096(4k)があります。処理が効率的になり、レンダリングも速くなります。</p>
+<h3>テクセル密度</h3>
+<p>実世界の画像テクスチャを使うときは、テクスチャとUVのスケールを考える必要があります。方法は次の2つです。</p>
+<ul>
+<li><b>アーティスティックに決める</b>:制作によっては、最も詳細なショットやアセットを基準に、残りを決める。スタイルやサイズの関係で変わります。じょうろは、外部の画像データがなくプロシージャルなテクスチャなので、この方法で作りました。</li>
+<li><b>テクセル密度で計算する</b>:UVのサイズを計算で決めます。</li>
+</ul>
+<p>例:Poly Haven などの、無料でタイル可能なテクスチャ(1K)をダウンロードし、プロジェクトの「textures」フォルダに置きます。Base Color に Image Texture を追加し、Diffuse(diff)の画像を選び、UV Editing ワークスペースで Texture 表示にします。<b>Preferences(Ctrl + ,)› Get Extensions</b> で、「Allow Online Access」を有効にし、「Texel」で検索して <b>Texel Density Checker</b> をインストールします(拡張機能とアドオンは、ほぼ同じものです)。UVエディターのサイドバー(N)に、新しい Texel Density タブが現れます。</p>
+<p>手計算では、テクスチャ解像度を、オブジェクトの実寸で割ります。1024px ÷ 200cm(2m の立方体)= <b>5.12 px/cm</b>。Texture Size を 1024px、px/cm を 5.12 にして <b>Set TD</b> を押すと、UVがその密度になります。立方体を複製して半分に拡大縮小(S + .5)し、もう一度 Set TD を押すと、UVが縮小され、同じテクセル密度になります。</p>
+<h2>ミニ課題</h2>
+<p>原文ページのモデル(.blend、CC-BY)を展開してパッキングし、動画の例と比べてみましょう。</p>
+<h2>まとめ</h2>
+<p>UV展開の考え方、シームの追加と削除、マテリアルへの画像テクスチャの追加、アイランドのパッキング、2のべき乗、拡張機能のインストールとテクセル密度を学びました。</p>
+
+<nav class="pager"><a href="vertex-painting.html">← 頂点ペイント</a><span></span></nav>
+</main></body></html>
