@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>レンダー出力 - Blender基礎 4.5 LTS 日本語ガイド</title>
+<link rel="stylesheet" href="../style.css"></head><body><main>
+<p><a href="../index.html">← 目次へ</a></p>
+<h1>レンダー出力</h1>
+<p class="note">Blender Studio「Blender Fundamentals 4.5 LTS」の無料レッスンを、日本語で要点をまとめた非公式の学習ガイドです(逐語訳ではありません)。原文: <a href="https://studio.blender.org/training/blender-fundamentals-45-lts/blender_4-5_lts_render-output/">Render Output</a></p>
+<p>解像度、アスペクト比、フレーム範囲、ファイル形式などに影響する、<b>Output プロパティ</b>を見ていきます。カメラ設定のセクションと同じファイルを使います。</p>
+<h2>Format(形式)</h2>
+<p>Output プロパティには、Blender からデータを書き出すときの設定があります。<b>Format</b> は、アスペクト比と解像度を制御します。</p>
+<ul>
+<li>X と Y のピクセル解像度を変えると、<b>アスペクト比</b>も変わります。プリセットから解像度を選べます。</li>
+<li><b>Resolution Scale</b> は最終的な解像度に影響します。200% 以上にして、2倍の解像度でレンダリングすることもできます。</li>
+<li><b>Aspect</b> は、正方形でないピクセル比の古いテレビに表示する場合以外は、ほとんど使いません。他の Format の項目はマニュアルを参照。</li>
+</ul>
+<h2>フレーム範囲</h2>
+<p>アニメーション用のフレーム/時間の設定です。Start/End は、タイムラインエディターと Frame Range タブの両方で変更できます。</p>
+<h2>Output(出力)</h2>
+<p>.jpg、.png、.EXR、.mp4 などの一般的なファイル形式でデータを書き出せます。</p>
+<ul>
+<li>画像をレンダリングして <b>Image › Save as(Shift + Alt + S)</b>を開くと、Output の設定に似た項目があります。File Format を変えると、名前欄にも反映されます(.mp4 コンテナの FFmpeg などを除く)。ファイル名だけ入力すれば、自動でファイル形式が末尾に付きます。</li>
+<li>画像形式ではなく動画形式にするには <b>FFmpeg</b> を選び、Encoding タブを開きます。1フレームをレンダリングするだけでは動画は書き出されず、<b>Render Animation(Ctrl + F12)</b>のときだけです。</li>
+</ul>
+<div class="note"><b>警告</b> アニメーションを .mp4 などの動画ファイルに直接レンダリングすると、Blender がクラッシュしたときに失敗することがあります。.mp4 は完全にエンコードされないと正しく動作しませんが、連番画像のレンダリングには、この問題がありません。</div>
+<p>他のタブ:Stereoscopy、Metadata、Post Processing も確認しましょう。</p>
+<h2>ミニ課題</h2>
+<p>原文のアニメーションに似たものを、正しくレンダリングします。</p>
+<ul>
+<li>レンダー解像度を <b>2048 × 858</b> に正しく設定する。</li>
+<li>ライティングを追加する。</li>
+<li>カラーマネジメントで色とコントラストを調整する。</li>
+<li>カメラを追加して、被写界深度を試す。</li>
+<li><b>30 fps</b> で、<b>.mp4</b> コンテナ、<b>High Quality</b> で書き出す。</li>
+<li>レンダリングに時間がかかりすぎる場合は、サンプル数や解像度を下げる。ショットを最適化するほかの方法も探す。</li>
+</ul>
+<p>アニメーションをレンダリングできれば、芸術的な調整は自由です。練習用ファイルと解答例(CC-BY)は、原文ページからダウンロードできます。次のセクションでは、じょうろのライティングとレンダリングを始めます。</p>
+<h2>まとめ</h2>
+<p>Output のレンダー設定の場所と、それに応じた出力設定の方法を学びました。</p>
+
+<nav class="pager"><a href="blender_4-5_lts_render-settings.html">← レンダー設定</a><a href="blender_4-5_lts_lighting-rendering-watering-can.html">じょうろのライティングとレンダリング →</a></nav>
+</main></body></html>

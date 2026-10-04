@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>カラーマネジメント - Blender基礎 4.5 LTS 日本語ガイド</title>
+<link rel="stylesheet" href="../style.css"></head><body><main>
+<p><a href="../index.html">← 目次へ</a></p>
+<h1>カラーマネジメント</h1>
+<p class="note">Blender Studio「Blender Fundamentals 4.5 LTS」の無料レッスンを、日本語で要点をまとめた非公式の学習ガイドです(逐語訳ではありません)。原文: <a href="https://studio.blender.org/training/blender-fundamentals-45-lts/blender_4-5_lts_color-management/">Color Management</a></p>
+<p><b>カラーマネジメント</b>は、次のような働きをします。</p>
+<ul>
+<li>適切なカラースペースを使い、画像全体に影響する。</li>
+<li>技術的に正しい結果を表示しつつ、芸術的にも期待に合うようにする。</li>
+<li>露出(Exposure)、ガンマ、ホワイトバランス、ティントなどを調整できる。</li>
+</ul>
+<p>前のレッスンと同じファイルを使って進められます。</p>
+<h2>ディスプレイデバイス</h2>
+<p><b>Display Device</b> は、モニターが使うカラースペースです。標準の <b>sRGB</b> が最も一般的(既定の理由)で、<b>P3</b> は Apple のデバイスで使われます。作業時は、正しいディスプレイデバイスを設定しましょう。</p>
+<h2>ビュートランスフォームとルック</h2>
+<p><b>View Transform</b> は、画像をディスプレイデバイスに表示する方法の違いで、Blender で行う作業の種類に応じて選びます。View Transform ごとに「ストップ」(露出段数)の量が違い、暗い値から明るい値までの範囲に重要です。範囲が広いほど、画像の調整に柔軟性が出ます。</p>
+<ul>
+<li><b>Standard</b> に比べ、<b>AgX</b> は範囲がずっと広く、レンダリング結果が実際のカメラに近くなり、説得力が増します。</li>
+<li>Standard から <b>Filmic</b> への違いは大きく、Filmic は範囲が広いので、露出オーバーになりにくくなります。AgX はさらに広い範囲を持ちます。</li>
+<li>ホワイトバランスを変えるときは、アイコンからプリセットを選べます。</li>
+</ul>
+<p>画像の Look、Exposure、Gamma、Curves、White Balance を変更できます。</p>
+<h2>まとめ</h2>
+<p>ディスプレイデバイス、ビュートランスフォーム、ルック、露出などの調整でレンダリング結果の見え方が変わることを学びました。</p>
+
+<nav class="pager"><a href="blender_4-5_lts_camera-settings.html">← カメラ設定</a><a href="blender_4-5_lts_render-settings.html">レンダー設定 →</a></nav>
+</main></body></html>

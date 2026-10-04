@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>環境ライティング - Blender基礎 4.5 LTS 日本語ガイド</title>
+<link rel="stylesheet" href="../style.css"></head><body><main>
+<p><a href="../index.html">← 目次へ</a></p>
+<h1>環境ライティング</h1>
+<p class="note">Blender Studio「Blender Fundamentals 4.5 LTS」の無料レッスンを、日本語で要点をまとめた非公式の学習ガイドです(逐語訳ではありません)。原文: <a href="https://studio.blender.org/training/blender-fundamentals-45-lts/blender_4-5_lts_environment-lighting/">Environment Lighting</a></p>
+<p>環境ライティングで、シーンに光を加える方法を紹介します。</p>
+<h2>できること</h2>
+<ul>
+<li>シェーダーエディターを World に切り替えて、World の色を調整できます。グラデーションを作る同じ手法で、独自の空の色を決められます。</li>
+<li>Blender には、空と太陽を再現する複数の <b>Sky Texture</b> モデルがあります。</li>
+<li><b>Environment Texture</b> を使うと、HDRI を追加できます(動画で使われているもの)。</li>
+</ul>
+<div class="note"><b>Sky Texture とは?</b> 古いものから比較的新しいものまで、さまざまな「空のモデル」が含まれます。それぞれ固有の設定があるので、試してみましょう。<br><b>HDRI とは?</b> High Dynamic Range Image の略で、3Dシーンを照らすためのライティングデータを取り込んだ画像です。通常、複数の RAW 画像を作ってつなぎ合わせて作ります。<b>正距円筒図法(Equirectangular)</b>と<b>ミラーボール</b>の投影方式があり、HDRI の種類に応じて投影方法を変更します。</div>
+<h2>World の色を作る</h2>
+<ol>
+<li>Shading ワークスペースで、Data Type を <b>World</b> に変更。</li>
+<li><b>Background</b> ノードが、World を照らす既定のノードです。</li>
+<li>おなじみのノードを追加:<b>Texture Coordinate</b>、<b>Separate XYZ</b>、<b>Color Ramp</b>(<b>Ease</b> に設定)。</li>
+<li>地面の色から地平線の色、上空まで、グラデーションを作る。プロパティの World タブでも Color Ramp を変更できます。</li>
+</ol>
+<p>Sky Texture を試し、前述の HDRI をダウンロードして、HDRI の設定を同じようにしてみましょう。</p>
+<h2>まとめ</h2>
+<p>Sky Texture、HDRI、独自の色という、環境ライティングを作る複数の方法を学びました。</p>
+
+<nav class="pager"><a href="blender_4-5_lts_light-types.html">← ライトの種類</a><a href="blender_4-5_lts_camera-settings.html">カメラ設定 →</a></nav>
+</main></body></html>
