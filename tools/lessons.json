@@ -1,0 +1,445 @@
+{
+ "chapters": {
+  "1": "First Steps(基本操作)",
+  "2": "モデリング",
+  "3": "スカルプト",
+  "4": "UV展開",
+  "5": "リギング",
+  "6": "ジオメトリノード",
+  "7": "シェーディング",
+  "8": "ライティングとレンダリング",
+  "9": "プロジェクトのワークフロー",
+  "10": "コンポジット",
+  "11": "ビデオ編集",
+  "12": "おまけ"
+ },
+ "lessons": [
+  {
+   "slug": "blender_4-5_lts_launching-blender",
+   "url": "blender_4-5_lts_launching-blender",
+   "en": "Launching Blender",
+   "ja": "Blenderを起動する",
+   "chapter": 1
+  },
+  {
+   "slug": "blender_4-5_lts_viewport-navigation",
+   "url": "blender_4-5_lts_viewport-navigation",
+   "en": "Viewport Navigation",
+   "ja": "ビューポートの操作",
+   "chapter": 1
+  },
+  {
+   "slug": "blender_4-5_lts_interface-overview",
+   "url": "blender_4-5_lts_interface-overview",
+   "en": "Interface Overview",
+   "ja": "インターフェース概要",
+   "chapter": 1
+  },
+  {
+   "slug": "blender_4-5_lts_selecting-transform",
+   "url": "blender_4-5_lts_selecting-transform",
+   "en": "Selecting & Transform",
+   "ja": "選択と変形",
+   "chapter": 1
+  },
+  {
+   "slug": "blender_4-5_lts_add-delete",
+   "url": "blender_4-5_lts_add-delete",
+   "en": "Add, Duplicate & Delete",
+   "ja": "追加・複製・削除",
+   "chapter": 1
+  },
+  {
+   "slug": "blender_4-5_lts_saving",
+   "url": "blender_4-5_lts_saving",
+   "en": "Saving",
+   "ja": "保存",
+   "chapter": 1
+  },
+  {
+   "slug": "blender_4-5_lts_3d-cursor",
+   "url": "blender_4-5_lts_3d-cursor",
+   "en": "3D Cursor",
+   "ja": "3Dカーソル",
+   "chapter": 1
+  },
+  {
+   "slug": "blender_4-5_lts_collections",
+   "url": "blender_4-5_lts_collections",
+   "en": "Collections",
+   "ja": "コレクション",
+   "chapter": 1
+  },
+  {
+   "slug": "blender_4-5_lts_workspaces",
+   "url": "blender_4-5_lts_workspaces",
+   "en": "Workspaces",
+   "ja": "ワークスペース",
+   "chapter": 1
+  },
+  {
+   "slug": "blender_4-5_lts_file-recovery",
+   "url": "blender_4-5_lts_file-recovery",
+   "en": "File Recovery",
+   "ja": "ファイルの復元",
+   "chapter": 2
+  },
+  {
+   "slug": "blender_4-5_lts_blenders-modes",
+   "url": "blender_4-5_lts_blenders-modes",
+   "en": "Blender's Modes",
+   "ja": "Blenderのモード",
+   "chapter": 2
+  },
+  {
+   "slug": "blender_4-5_lts_adding-objects",
+   "url": "blender_4-5_lts_adding-objects",
+   "en": "Adding Objects",
+   "ja": "オブジェクトの追加",
+   "chapter": 2
+  },
+  {
+   "slug": "blender_4-5_lts_mesh-selection",
+   "url": "blender_4-5_lts_mesh-selection",
+   "en": "Mesh Selection",
+   "ja": "メッシュの選択",
+   "chapter": 2
+  },
+  {
+   "slug": "blender_4-5_lts_extruding",
+   "url": "blender_4-5_lts_extruding",
+   "en": "Extruding",
+   "ja": "押し出し",
+   "chapter": 2
+  },
+  {
+   "slug": "blender_4-5_lts_loop-cuts",
+   "url": "blender_4-5_lts_loop-cuts",
+   "en": "Loop Cuts",
+   "ja": "ループカット",
+   "chapter": 2
+  },
+  {
+   "slug": "blender_4-5_lts_knife-tool",
+   "url": "blender_4-5_lts_knife-tool",
+   "en": "Knife Tool",
+   "ja": "ナイフツール",
+   "chapter": 2
+  },
+  {
+   "slug": "blender_4-5_lts_bevel-tool",
+   "url": "blender_4-5_lts_bevel-tool",
+   "en": "Bevel Tool",
+   "ja": "ベベルツール",
+   "chapter": 2
+  },
+  {
+   "slug": "blender_4-5_lts_delete-separate-merge-connect",
+   "url": "blender_4-5_lts_delete-separate-merge-connect",
+   "en": "Delete, Separate, Merge & Connect",
+   "ja": "削除・分離・結合・接続",
+   "chapter": 2
+  },
+  {
+   "slug": "blender_4-5_lts_creating-curves",
+   "url": "blender_4-5_lts_creating-curves",
+   "en": "Creating Curves",
+   "ja": "カーブの作成",
+   "chapter": 2
+  },
+  {
+   "slug": "blender_4-5_lts_modifiers",
+   "url": "blender_4-5_lts_modifiers",
+   "en": "Modifiers",
+   "ja": "モディファイア",
+   "chapter": 2
+  },
+  {
+   "slug": "blender_4-5_lts_modeling-the-watering-can",
+   "url": "blender_4-5_lts_modeling-the-watering-can",
+   "en": "Modeling the Watering Can",
+   "ja": "じょうろをモデリングする",
+   "chapter": 2
+  },
+  {
+   "slug": "sculpting_introduction",
+   "url": "sculpting_introduction",
+   "en": "Sculpting Introduction",
+   "ja": "スカルプト入門",
+   "chapter": 3
+  },
+  {
+   "slug": "basic-sculpting",
+   "url": "basic-sculpting",
+   "en": "Basic Sculpting",
+   "ja": "基本のスカルプト",
+   "chapter": 3
+  },
+  {
+   "slug": "using-multiple-objects",
+   "url": "using-multiple-objects",
+   "en": "Sculpting Multiple Objects",
+   "ja": "複数オブジェクトのスカルプト",
+   "chapter": 3
+  },
+  {
+   "slug": "fine-control",
+   "url": "fine-control",
+   "en": "Fine Control on a Single Object",
+   "ja": "単一オブジェクトの細かな制御",
+   "chapter": 3
+  },
+  {
+   "slug": "detailed-sculpting",
+   "url": "detailed-sculpting",
+   "en": "Detailed Sculpting",
+   "ja": "ディテールのスカルプト",
+   "chapter": 3
+  },
+  {
+   "slug": "vertex-painting",
+   "url": "vertex-painting",
+   "en": "Vertex Painting",
+   "ja": "頂点ペイント",
+   "chapter": 3
+  },
+  {
+   "slug": "blender_4-5_lts_what-is-unwrapping",
+   "url": "blender_4-5_lts_what-is-unwrapping",
+   "en": "UV Unwrapping",
+   "ja": "UV展開",
+   "chapter": 4
+  },
+  {
+   "slug": "blender_4-5_lts_unwrapping-watering-can",
+   "url": "blender_4-5_lts_unwrapping-watering-can",
+   "en": "Unwrapping Watering Can",
+   "ja": "じょうろをUV展開する",
+   "chapter": 4
+  },
+  {
+   "slug": "blender_4-5_lts_rigging_intro",
+   "url": "blender_4-5_lts_rigging_intro",
+   "en": "Rigging Introduction",
+   "ja": "リギング入門",
+   "chapter": 5
+  },
+  {
+   "slug": "blender_4-5_lts_rigging_skeleton",
+   "url": "blender_4-5_lts_rigging_skeleton",
+   "en": "Creating a Skeleton",
+   "ja": "スケルトンの作成",
+   "chapter": 5
+  },
+  {
+   "slug": "blender_4-5_lts_rigging_weight-painting",
+   "url": "blender_4-5_lts_rigging_weight-painting",
+   "en": "Weight Painting",
+   "ja": "ウェイトペイント",
+   "chapter": 5
+  },
+  {
+   "slug": "blender_4-5_lts_rigging_constraints",
+   "url": "blender_4-5_lts_rigging_constraints",
+   "en": "Constraints",
+   "ja": "コンストレイント",
+   "chapter": 5
+  },
+  {
+   "slug": "blender_4-5_lts_rigging_ease_of_use",
+   "url": "blender_4-5_lts_rigging_ease_of_use",
+   "en": "Ease of Use",
+   "ja": "使いやすさの工夫",
+   "chapter": 5
+  },
+  {
+   "slug": "blender_4-5_lts_rigging_drivers",
+   "url": "blender_4-5_lts_rigging_drivers",
+   "en": "Drivers",
+   "ja": "ドライバー",
+   "chapter": 5
+  },
+  {
+   "slug": "blender_4-5_lts_geometry-nodes-theory",
+   "url": "blender_4-5_lts_geometry-nodes-theory",
+   "en": "Geometry Nodes Theory",
+   "ja": "ジオメトリノードの基礎理論",
+   "chapter": 6
+  },
+  {
+   "slug": "blender_4-5_lts_watering-can-construction",
+   "url": "blender_4-5_lts_watering-can-construction",
+   "en": "Watering Can Construction",
+   "ja": "じょうろの構築",
+   "chapter": 6
+  },
+  {
+   "slug": "blender_4-5_lts_shading-theory",
+   "url": "blender_4-5_lts_shading-theory",
+   "en": "Shading Theory",
+   "ja": "シェーディングの基礎理論",
+   "chapter": 7
+  },
+  {
+   "slug": "blender_4-5_lts_materials_shader_editor",
+   "url": "blender_4-5_lts_materials_shader_editor",
+   "en": "Materials & Shader Editor",
+   "ja": "マテリアルとシェーダーエディター",
+   "chapter": 7
+  },
+  {
+   "slug": "blender_4-5_lts_shading_watering_can",
+   "url": "blender_4-5_lts_shading_watering_can",
+   "en": "Shading Watering Can",
+   "ja": "じょうろのシェーディング",
+   "chapter": 7
+  },
+  {
+   "slug": "blender_4-5_lts_lighting-rendering-theory-cycles",
+   "url": "blender_4-5_lts_lighting-rendering-theory-cycles",
+   "en": "Lighting & Rendering Theory Cycles and EEVEE",
+   "ja": "ライティングとレンダリングの基礎(CyclesとEEVEE)",
+   "chapter": 8
+  },
+  {
+   "slug": "blender_4-5_lts_light-types",
+   "url": "blender_4-5_lts_light-types",
+   "en": "Light Types",
+   "ja": "ライトの種類",
+   "chapter": 8
+  },
+  {
+   "slug": "blender_4-5_lts_environment-lighting",
+   "url": "blender_4-5_lts_environment-lighting",
+   "en": "Environment Lighting",
+   "ja": "環境ライティング",
+   "chapter": 8
+  },
+  {
+   "slug": "blender_4-5_lts_camera-settings",
+   "url": "blender_4-5_lts_camera-settings",
+   "en": "Camera Settings",
+   "ja": "カメラ設定",
+   "chapter": 8
+  },
+  {
+   "slug": "blender_4-5_lts_color-management",
+   "url": "blender_4-5_lts_color-management",
+   "en": "Color Management",
+   "ja": "カラーマネジメント",
+   "chapter": 8
+  },
+  {
+   "slug": "blender_4-5_lts_render-settings",
+   "url": "blender_4-5_lts_render-settings",
+   "en": "Render Settings",
+   "ja": "レンダー設定",
+   "chapter": 8
+  },
+  {
+   "slug": "blender_4-5_lts_render-output",
+   "url": "blender_4-5_lts_render-output",
+   "en": "Render Output",
+   "ja": "レンダー出力",
+   "chapter": 8
+  },
+  {
+   "slug": "blender_4-5_lts_lighting-rendering-watering-can",
+   "url": "blender_4-5_lts_lighting-rendering-watering-can",
+   "en": "Lighting & Rendering Watering Can",
+   "ja": "じょうろのライティングとレンダリング",
+   "chapter": 8
+  },
+  {
+   "slug": "blender_4-5_lts_linking-appending",
+   "url": "blender_4-5_lts_linking-appending",
+   "en": "Linking & Appending",
+   "ja": "リンクとアペンド",
+   "chapter": 9
+  },
+  {
+   "slug": "blender_4-5_lts_asset-browser",
+   "url": "blender_4-5_lts_asset-browser",
+   "en": "Asset Browser",
+   "ja": "アセットブラウザー",
+   "chapter": 9
+  },
+  {
+   "slug": "blender_4-5_lts_importing-exporting",
+   "url": "blender_4-5_lts_importing-exporting",
+   "en": "Importing & Exporting",
+   "ja": "インポートとエクスポート",
+   "chapter": 9
+  },
+  {
+   "slug": "blender_4-5_lts_compositing-theory",
+   "url": "blender_4-5_lts_compositing-theory",
+   "en": "Compositing Theory",
+   "ja": "コンポジットの基礎理論",
+   "chapter": 10
+  },
+  {
+   "slug": "blender_4-5_lts_compositing-techniques",
+   "url": "blender_4-5_lts_compositing-techniques",
+   "en": "Compositing Techniques",
+   "ja": "コンポジットのテクニック",
+   "chapter": 10
+  },
+  {
+   "slug": "blender_4-5_lts_compositing-rendering-watering-can",
+   "url": "blender_4-5_lts_compositing-rendering-watering-can",
+   "en": "Compositing & Rendering Watering Can",
+   "ja": "じょうろのコンポジットとレンダリング",
+   "chapter": 10
+  },
+  {
+   "slug": "blender_4-5_lts_video-editing-theory",
+   "url": "blender_4-5_lts_video-editing-theory",
+   "en": "Video Editing Theory",
+   "ja": "ビデオ編集の基礎理論",
+   "chapter": 11
+  },
+  {
+   "slug": "blender_4-5_lts_importing-files",
+   "url": "blender_4-5_lts_importing-files",
+   "en": "Importing Files",
+   "ja": "ファイルの読み込み",
+   "chapter": 11
+  },
+  {
+   "slug": "blender_4-5_lts_effects_and_adjustment_layers",
+   "url": "blender_4-5_lts_effects_and_adjustment_layers",
+   "en": "Effects & Adjustment Layers",
+   "ja": "エフェクトと調整レイヤー",
+   "chapter": 11
+  },
+  {
+   "slug": "blender_4-5_lts_text",
+   "url": "blender_4-5_lts_text",
+   "en": "Text",
+   "ja": "テキスト",
+   "chapter": 11
+  },
+  {
+   "slug": "blender_4-5_lts_exporting-watering-can-sequence",
+   "url": "blender_4-5_lts_exporting-watering-can-sequence",
+   "en": "Exporting Watering Can Sequence",
+   "ja": "じょうろシーケンスの書き出し",
+   "chapter": 11
+  },
+  {
+   "slug": "blender_4-5_lts_resources",
+   "url": "blender_4-5_lts_resources",
+   "en": "Helpful Resources",
+   "ja": "お役立ちリソース",
+   "chapter": 12
+  },
+  {
+   "slug": "blender_4-5_lts_useful-addons",
+   "url": "blender_4-5_lts_useful-addons",
+   "en": "Useful Addons",
+   "ja": "便利なアドオン",
+   "chapter": 12
+  }
+ ]
+}
